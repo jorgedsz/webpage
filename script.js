@@ -178,6 +178,29 @@ const translations = {
     demoTitle: 'Try Your AI Agent ',
     demoTitleGrad: 'Right Now',
     demoSubtitle: 'Generate a custom AI chat and voice agent for your business in seconds. No sign-up required.',
+    demoLabelName: 'Your Name',
+    demoLabelBusiness: 'Business Name *',
+    demoLabelIndustry: 'Industry *',
+    demoSelectIndustry: 'Select an industry',
+    demoLabelObjective: 'Agent Objective *',
+    demoLabelType: 'Agent Type *',
+    demoLabelLanguage: 'Language *',
+    demoLabelTone: 'Tone / Style',
+    demoLabelFAQ: 'FAQ (optional)',
+    demoLabelObjections: 'Common Objections (optional)',
+    demoGenerate: 'Generate Demo',
+    demoLoadingTitle: 'Generating your AI agent...',
+    demoLoadingSubtitle: 'This may take a moment. We\'re crafting the perfect prompt for your business.',
+    demoResultsTitle: 'Your AI Agent Demo',
+    demoStartOver: 'Start Over',
+    demoChatTab: 'Chat Demo',
+    demoVoiceTab: 'Voice Demo',
+    demoChatPlaceholder: 'Type a message...',
+    demoVoiceSelect: 'Select Agent Voice',
+    demoCallReady: 'Ready to start voice call',
+    demoTranscript: 'Live Transcript',
+    demoBookText: 'Ready to deploy this AI agent for your business? Book a free call with our team.',
+    demoBookCTA: 'Book Your Free Call',
 
     // CTA
     ctaTitle: 'Ready to Build Your First ',
@@ -382,6 +405,29 @@ const translations = {
     demoTitle: 'Prueba Tu Agente IA ',
     demoTitleGrad: 'Ahora Mismo',
     demoSubtitle: 'Genera un agente de chat y voz IA personalizado para tu negocio en segundos. Sin registro.',
+    demoLabelName: 'Tu Nombre',
+    demoLabelBusiness: 'Nombre del Negocio *',
+    demoLabelIndustry: 'Industria *',
+    demoSelectIndustry: 'Selecciona una industria',
+    demoLabelObjective: 'Objetivo del Agente *',
+    demoLabelType: 'Tipo de Agente *',
+    demoLabelLanguage: 'Idioma *',
+    demoLabelTone: 'Tono / Estilo',
+    demoLabelFAQ: 'Preguntas Frecuentes (opcional)',
+    demoLabelObjections: 'Objeciones Comunes (opcional)',
+    demoGenerate: 'Generar Demo',
+    demoLoadingTitle: 'Generando tu agente IA...',
+    demoLoadingSubtitle: 'Esto puede tomar un momento. Estamos creando el prompt perfecto para tu negocio.',
+    demoResultsTitle: 'Demo de Tu Agente IA',
+    demoStartOver: 'Empezar de Nuevo',
+    demoChatTab: 'Demo de Chat',
+    demoVoiceTab: 'Demo de Voz',
+    demoChatPlaceholder: 'Escribe un mensaje...',
+    demoVoiceSelect: 'Selecciona la Voz del Agente',
+    demoCallReady: 'Listo para iniciar llamada de voz',
+    demoTranscript: 'Transcripción en Vivo',
+    demoBookText: '¿Listo para desplegar este agente IA para tu negocio? Agenda una llamada gratis con nuestro equipo.',
+    demoBookCTA: 'Agenda Tu Llamada Gratis',
 
     // CTA
     ctaTitle: '¿Listo Para Crear Tu Primer ',
@@ -570,6 +616,485 @@ function initLogoScroll() {
   track.innerHTML += track.innerHTML;
 }
 
+// ========== DEMO ENGINE ==========
+const DEMO_API = 'https://app.swordaisolutions.com/api/demo';
+
+const DEMO_VOICES = {
+  English: [
+    { id: '21m00Tcm4TlvDq8ikWAM', name: 'Rachel', desc: 'Female — Warm & Friendly' },
+    { id: 'EXAVITQu4vr4xnSDxMaL', name: 'Sarah', desc: 'Female — Soft & Professional' },
+    { id: 'XB0fDUnXU5powFXDhCwa', name: 'Charlotte', desc: 'Female — Confident' },
+    { id: 'pFZP5JQG7iQjIQuC4Bku', name: 'Lily', desc: 'Female — British' },
+    { id: 'pNInz6obpgDQGcFmaJgB', name: 'Adam', desc: 'Male — Deep & Authoritative' },
+    { id: 'TxGEqnHWrfWFTfGW9XjX', name: 'Josh', desc: 'Male — Narrative' },
+    { id: 'ErXwobaYiN019PkySvjV', name: 'Antoni', desc: 'Male — Friendly' },
+    { id: '29vD33N1CtxCmqQRPOHJ', name: 'Drew', desc: 'Male — Confident & Warm' },
+  ],
+  Spanish: [
+    { id: 'FGY2WhFZPnopRgpkkpcg', name: 'Laura', desc: 'Femenina — Cálida y Natural' },
+    { id: 'XrExE9yKIg1WjnnlVkGX', name: 'Matilda', desc: 'Femenina — Profesional' },
+    { id: 'Xb7hH8MSUJpSbSDYk0k2', name: 'Alice', desc: 'Femenina — Clara y Amable' },
+    { id: 'cgSgspJ2msm6clMCkdW9', name: 'Jessica', desc: 'Femenina — Expresiva' },
+    { id: 'TX3LPaxmHKxFdv7VOQHJ', name: 'Liam', desc: 'Masculina — Confiable' },
+    { id: 'nPczCjzI2devNBz1zQrb', name: 'Brian', desc: 'Masculina — Narrativo' },
+    { id: 'cjVigY5qzO86Huf0OWal', name: 'Eric', desc: 'Masculina — Amigable' },
+    { id: 'pqHfZKP75CvOlQylNhV4', name: 'Bill', desc: 'Masculina — Seguro' },
+  ],
+};
+
+const demo = {
+  demoId: null,
+  voicebotPrompt: '',
+  firstMessage: '',
+  agentType: 'inbound',
+  selectedLanguage: 'English',
+  selectedVoice: null,
+  isSending: false,
+  // Voice state
+  vapi: null,
+  callStatus: 'idle',
+  muted: false,
+  elapsed: 0,
+  timerInterval: null,
+};
+
+function initDemo() {
+  const form = document.getElementById('demo-form');
+  if (!form) return;
+
+  // Agent type toggle
+  document.querySelectorAll('.demo-type-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.demo-type-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      demo.agentType = btn.dataset.type;
+    });
+  });
+
+  // Form submit
+  form.addEventListener('submit', handleDemoSubmit);
+
+  // Tabs
+  document.querySelectorAll('.demo-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('demo-chat-tab').style.display = tab.dataset.tab === 'chat' ? '' : 'none';
+      document.getElementById('demo-voice-tab').style.display = tab.dataset.tab === 'voice' ? '' : 'none';
+    });
+  });
+
+  // Chat input
+  const chatInput = document.getElementById('demo-chat-input');
+  chatInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendDemoChat(); }
+  });
+  document.getElementById('demo-send-btn').addEventListener('click', sendDemoChat);
+
+  // Start over
+  document.getElementById('demo-start-over').addEventListener('click', demoStartOver);
+
+  // Voice controls
+  document.getElementById('demo-call-btn').addEventListener('click', handleCallToggle);
+  document.getElementById('demo-mute-btn').addEventListener('click', toggleDemoMute);
+
+  // Init voice grid with default language
+  renderVoiceGrid('English');
+}
+
+async function handleDemoSubmit(e) {
+  e.preventDefault();
+  const errorEl = document.getElementById('demo-error');
+  errorEl.style.display = 'none';
+
+  const businessName = document.getElementById('demo-businessName').value.trim();
+  const industry = document.getElementById('demo-industry').value;
+  const agentObjective = document.getElementById('demo-agentObjective').value.trim();
+
+  if (!businessName || !industry || !agentObjective) {
+    errorEl.textContent = 'Please fill in all required fields.';
+    errorEl.style.display = '';
+    return;
+  }
+
+  const lang = document.getElementById('demo-language').value;
+  demo.selectedLanguage = lang;
+
+  const body = {
+    callerName: document.getElementById('demo-callerName').value.trim(),
+    businessName,
+    industry,
+    agentObjective,
+    agentType: demo.agentType,
+    language: lang,
+    tone: document.getElementById('demo-tone').value,
+    faq: document.getElementById('demo-faq').value.trim(),
+    objections: document.getElementById('demo-objections').value.trim(),
+  };
+
+  // Switch to loading
+  document.getElementById('demo-form-phase').style.display = 'none';
+  document.getElementById('demo-loading-phase').style.display = '';
+
+  try {
+    const res = await fetch(`${DEMO_API}/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: 'Request failed' }));
+      throw new Error(err.error || 'Failed to generate demo.');
+    }
+
+    const data = await res.json();
+    demo.demoId = data.demoId;
+    demo.voicebotPrompt = data.voicebotPrompt;
+    demo.firstMessage = data.firstMessage;
+
+    // Set first message in chat
+    const messagesEl = document.getElementById('demo-messages');
+    messagesEl.innerHTML = '';
+    appendDemoMessage('assistant', data.firstMessage);
+
+    // Render voice grid for selected language
+    renderVoiceGrid(lang);
+
+    // Switch to results
+    document.getElementById('demo-loading-phase').style.display = 'none';
+    document.getElementById('demo-results-phase').style.display = '';
+  } catch (err) {
+    document.getElementById('demo-loading-phase').style.display = 'none';
+    document.getElementById('demo-form-phase').style.display = '';
+    errorEl.textContent = err.message;
+    errorEl.style.display = '';
+  }
+}
+
+function appendDemoMessage(role, content) {
+  const messagesEl = document.getElementById('demo-messages');
+  const div = document.createElement('div');
+  div.className = `demo-msg ${role}`;
+  div.textContent = content;
+  messagesEl.appendChild(div);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+  return div;
+}
+
+async function sendDemoChat() {
+  const input = document.getElementById('demo-chat-input');
+  const text = input.value.trim();
+  if (!text || demo.isSending) return;
+
+  input.value = '';
+  demo.isSending = true;
+  document.getElementById('demo-send-btn').disabled = true;
+
+  appendDemoMessage('user', text);
+
+  // Typing indicator
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'demo-msg assistant typing';
+  typingDiv.innerHTML = '<span></span><span></span><span></span>';
+  document.getElementById('demo-messages').appendChild(typingDiv);
+  document.getElementById('demo-messages').scrollTop = document.getElementById('demo-messages').scrollHeight;
+
+  try {
+    const res = await fetch(`${DEMO_API}/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ demoId: demo.demoId, message: text }),
+    });
+
+    // Remove typing indicator
+    typingDiv.remove();
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: 'Request failed' }));
+      appendDemoMessage('assistant', err.error || 'Something went wrong.');
+      demo.isSending = false;
+      document.getElementById('demo-send-btn').disabled = false;
+      return;
+    }
+
+    // Stream response
+    const msgDiv = appendDemoMessage('assistant', '');
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+    let fullText = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed || !trimmed.startsWith('data: ')) continue;
+        const data = trimmed.slice(6);
+        if (data === '[DONE]') break;
+        try {
+          const parsed = JSON.parse(data);
+          if (parsed.error) {
+            msgDiv.textContent = parsed.error;
+            demo.isSending = false;
+            document.getElementById('demo-send-btn').disabled = false;
+            return;
+          }
+          if (parsed.content) {
+            fullText += parsed.content;
+            msgDiv.textContent = fullText;
+            document.getElementById('demo-messages').scrollTop = document.getElementById('demo-messages').scrollHeight;
+          }
+        } catch {}
+      }
+    }
+  } catch {
+    typingDiv.remove();
+    appendDemoMessage('assistant', 'Network error. Please try again.');
+  }
+
+  demo.isSending = false;
+  document.getElementById('demo-send-btn').disabled = false;
+  input.focus();
+}
+
+function renderVoiceGrid(language) {
+  const voices = DEMO_VOICES[language] || DEMO_VOICES.English;
+  const grid = document.getElementById('demo-voice-grid');
+  grid.innerHTML = '';
+  demo.selectedVoice = voices[0].id;
+
+  voices.forEach(v => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'demo-voice-btn' + (v.id === demo.selectedVoice ? ' active' : '');
+    btn.innerHTML = `<span class="voice-name">${v.name}</span><span class="voice-desc">${v.desc}</span>`;
+    btn.addEventListener('click', () => {
+      grid.querySelectorAll('.demo-voice-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      demo.selectedVoice = v.id;
+    });
+    grid.appendChild(btn);
+  });
+}
+
+async function handleCallToggle() {
+  if (demo.callStatus === 'idle' || demo.callStatus === 'ended') {
+    await startDemoCall();
+  } else if (demo.callStatus === 'active') {
+    stopDemoCall();
+  }
+}
+
+async function startDemoCall() {
+  const errorEl = document.getElementById('demo-voice-error');
+  errorEl.style.display = 'none';
+
+  setCallUI('connecting');
+
+  try {
+    // Fetch VAPI public key
+    const keyRes = await fetch(`${DEMO_API}/vapi-key`);
+    if (!keyRes.ok) {
+      const err = await keyRes.json().catch(() => ({}));
+      throw new Error(err.error || 'Voice calling is not configured.');
+    }
+    const { vapiPublicKey } = await keyRes.json();
+
+    // Load VAPI SDK dynamically
+    if (!window.Vapi) {
+      await new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/vapi.min.js';
+        script.onload = resolve;
+        script.onerror = () => reject(new Error('Failed to load voice SDK'));
+        document.head.appendChild(script);
+      });
+    }
+
+    const vapi = new window.Vapi(vapiPublicKey);
+    demo.vapi = vapi;
+
+    vapi.on('call-start', () => {
+      demo.callStatus = 'active';
+      setCallUI('active');
+      demo.elapsed = 0;
+      demo.timerInterval = setInterval(() => {
+        demo.elapsed++;
+        const timerEl = document.getElementById('demo-call-timer');
+        const m = Math.floor(demo.elapsed / 60).toString().padStart(2, '0');
+        const s = (demo.elapsed % 60).toString().padStart(2, '0');
+        timerEl.textContent = `${m}:${s}`;
+      }, 1000);
+    });
+
+    vapi.on('call-end', () => {
+      demo.callStatus = 'ended';
+      setCallUI('ended');
+      clearInterval(demo.timerInterval);
+    });
+
+    vapi.on('message', msg => {
+      if (msg.type === 'transcript' && msg.transcriptType === 'final') {
+        addTranscriptEntry(msg.role === 'assistant' ? 'agent' : 'user', msg.role === 'assistant' ? 'Agent' : 'You', msg.transcript);
+      } else if (msg.type === 'conversation-update' && msg.conversation) {
+        const body = document.getElementById('demo-transcript');
+        body.innerHTML = '';
+        msg.conversation.filter(m => m.role === 'assistant' || m.role === 'user').forEach(m => {
+          addTranscriptEntry(m.role === 'assistant' ? 'agent' : 'user', m.role === 'assistant' ? 'Agent' : 'You', m.content);
+        });
+      }
+    });
+
+    vapi.on('error', err => {
+      demo.callStatus = 'ended';
+      setCallUI('ended');
+      clearInterval(demo.timerInterval);
+      addTranscriptEntry('system', 'System', `Error: ${err.message || 'Call failed'}`);
+    });
+
+    await vapi.start({
+      model: {
+        provider: 'openai',
+        model: 'gpt-4o-mini',
+        messages: [{ role: 'system', content: demo.voicebotPrompt }],
+      },
+      voice: {
+        provider: '11labs',
+        voiceId: demo.selectedVoice,
+        ...(demo.selectedLanguage !== 'English' && { model: 'eleven_multilingual_v2' }),
+      },
+      firstMessage: demo.firstMessage,
+    });
+  } catch (err) {
+    demo.callStatus = 'idle';
+    setCallUI('idle');
+    errorEl.textContent = err.message || 'Failed to start voice call.';
+    errorEl.style.display = '';
+  }
+}
+
+function stopDemoCall() {
+  if (demo.vapi) {
+    demo.vapi.stop();
+    demo.vapi = null;
+  }
+  clearInterval(demo.timerInterval);
+  demo.callStatus = 'ended';
+  setCallUI('ended');
+}
+
+function toggleDemoMute() {
+  if (!demo.vapi) return;
+  demo.muted = !demo.muted;
+  demo.vapi.setMuted(demo.muted);
+  document.getElementById('demo-mute-btn').classList.toggle('muted', demo.muted);
+}
+
+function setCallUI(status) {
+  const callBtn = document.getElementById('demo-call-btn');
+  const muteBtn = document.getElementById('demo-mute-btn');
+  const statusEl = document.getElementById('demo-call-status');
+  const timerEl = document.getElementById('demo-call-timer');
+  const micGlow = document.getElementById('demo-mic-glow');
+  const micCircle = document.getElementById('demo-mic-circle');
+  const voiceSelector = document.getElementById('demo-voice-selector');
+
+  // Reset classes
+  micGlow.className = 'demo-mic-glow';
+  micCircle.className = 'demo-mic-circle';
+  callBtn.className = 'demo-call-btn';
+
+  if (status === 'idle') {
+    callBtn.classList.add('demo-call-start');
+    callBtn.innerHTML = '<svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>';
+    callBtn.disabled = false;
+    muteBtn.style.display = 'none';
+    timerEl.style.display = 'none';
+    statusEl.textContent = 'Ready to start voice call';
+    voiceSelector.style.display = '';
+  } else if (status === 'connecting') {
+    micGlow.classList.add('connecting');
+    micCircle.classList.add('connecting');
+    callBtn.classList.add('demo-call-connecting');
+    callBtn.innerHTML = '<div class="demo-spinner" style="width:24px;height:24px;margin:0;border-width:2px"></div>';
+    callBtn.disabled = true;
+    muteBtn.style.display = 'none';
+    timerEl.style.display = 'none';
+    statusEl.textContent = 'Connecting...';
+    voiceSelector.style.display = 'none';
+    // Clear transcript
+    document.getElementById('demo-transcript').innerHTML = '<div class="transcript-placeholder">Waiting for conversation...</div>';
+  } else if (status === 'active') {
+    micGlow.classList.add('active');
+    micCircle.classList.add('active');
+    callBtn.classList.add('demo-call-end');
+    callBtn.innerHTML = '<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M3.68 16.07l3.92-3.11V9.59c2.85-.93 5.94-.93 8.8 0v3.38l3.91 3.1c.46.36.66.96.5 1.52-.5 1.58-1.33 3.04-2.43 4.28-.37.42-.92.63-1.48.55-1.98-.29-3.86-.97-5.53-1.96a18.8 18.8 0 01-5.53 1.96c-.56.08-1.11-.13-1.48-.55-1.1-1.24-1.93-2.7-2.43-4.28a1.47 1.47 0 01.5-1.52h.25z"/></svg>';
+    callBtn.disabled = false;
+    muteBtn.style.display = '';
+    timerEl.style.display = '';
+    statusEl.textContent = 'Call active — speak into your microphone';
+    voiceSelector.style.display = 'none';
+  } else if (status === 'ended') {
+    callBtn.classList.add('demo-call-start');
+    callBtn.innerHTML = '<svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>';
+    callBtn.disabled = false;
+    muteBtn.style.display = 'none';
+    statusEl.textContent = 'Call ended';
+    voiceSelector.style.display = '';
+  }
+}
+
+function addTranscriptEntry(type, label, text) {
+  const body = document.getElementById('demo-transcript');
+  // Remove placeholder if present
+  const placeholder = body.querySelector('.transcript-placeholder');
+  if (placeholder) placeholder.remove();
+
+  const div = document.createElement('div');
+  div.className = `transcript-entry ${type}`;
+  div.innerHTML = `<span class="label">${label}:</span> ${text}`;
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+
+function demoStartOver() {
+  // Stop voice call if active
+  if (demo.vapi) { demo.vapi.stop(); demo.vapi = null; }
+  clearInterval(demo.timerInterval);
+
+  // Reset state
+  demo.demoId = null;
+  demo.voicebotPrompt = '';
+  demo.firstMessage = '';
+  demo.callStatus = 'idle';
+  demo.muted = false;
+  demo.elapsed = 0;
+
+  // Reset UI
+  document.getElementById('demo-results-phase').style.display = 'none';
+  document.getElementById('demo-form-phase').style.display = '';
+  document.getElementById('demo-error').style.display = 'none';
+  document.getElementById('demo-voice-error').style.display = 'none';
+  document.getElementById('demo-messages').innerHTML = '';
+  document.getElementById('demo-transcript').innerHTML = '<div class="transcript-placeholder">Select a voice and click the call button to talk to your AI agent</div>';
+  document.getElementById('demo-chat-input').value = '';
+
+  // Reset tabs to chat
+  document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.demo-tab[data-tab="chat"]').classList.add('active');
+  document.getElementById('demo-chat-tab').style.display = '';
+  document.getElementById('demo-voice-tab').style.display = 'none';
+
+  setCallUI('idle');
+}
+
 // ========== INIT ==========
 document.addEventListener('DOMContentLoaded', () => {
   const saved = localStorage.getItem('sword-ai-lang');
@@ -589,4 +1114,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initLogoScroll();
   startCallTimer();
+  initDemo();
 });
