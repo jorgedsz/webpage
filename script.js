@@ -980,12 +980,16 @@ async function startDemoCall() {
     const agentName = getRandomAgentName(demo.selectedLanguage);
     const langCode = LANG_CODES[demo.selectedLanguage] || 'en';
 
+    const nameInstruction = demo.selectedLanguage === 'Spanish'
+      ? `IMPORTANTE: Tu nombre es ${agentName}. Siempre usa este nombre cuando te presentes o te pregunten tu nombre. Nunca uses otro nombre.\n\n`
+      : `IMPORTANT: Your name is ${agentName}. Always use this name when introducing yourself or when asked your name. Never use any other name.\n\n`;
+
     await vapi.start({
       name: agentName,
       model: {
         provider: 'openai',
         model: 'gpt-4o-mini',
-        messages: [{ role: 'system', content: `Your name is ${agentName}. ` + demo.voicebotPrompt }],
+        messages: [{ role: 'system', content: nameInstruction + demo.voicebotPrompt }],
       },
       voice: {
         provider: '11labs',
@@ -997,7 +1001,10 @@ async function startDemoCall() {
         model: 'nova-2',
         language: langCode,
       },
-      firstMessage: demo.firstMessage,
+      firstMessage: demo.firstMessage.replace(
+        /(?:this is|soy|me llamo|mi nombre es|I'm|I am|habla)\s+\S+/i,
+        (match) => match.replace(/\s+\S+$/, ` ${agentName}`)
+      ),
     });
   } catch (err) {
     console.error('Voice call start error:', err);
