@@ -907,18 +907,13 @@ async function startDemoCall() {
     }
     const { vapiPublicKey } = await keyRes.json();
 
-    // Load VAPI SDK dynamically
-    if (!window.Vapi) {
-      await new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/vapi.min.js';
-        script.onload = resolve;
-        script.onerror = () => reject(new Error('Failed to load voice SDK'));
-        document.head.appendChild(script);
-      });
+    // Load VAPI SDK dynamically via ES module
+    if (!window._VapiClass) {
+      const module = await import('https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/+esm');
+      window._VapiClass = module.default;
     }
 
-    const vapi = new window.Vapi(vapiPublicKey);
+    const vapi = new window._VapiClass(vapiPublicKey);
     demo.vapi = vapi;
 
     vapi.on('call-start', () => {
