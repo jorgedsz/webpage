@@ -950,10 +950,12 @@ async function startDemoCall() {
     });
 
     vapi.on('error', err => {
+      console.error('VAPI error:', err);
       demo.callStatus = 'ended';
       setCallUI('ended');
       clearInterval(demo.timerInterval);
-      addTranscriptEntry('system', 'System', `Error: ${err.message || 'Call failed'}`);
+      const errMsg = err?.error?.message || err?.message || (typeof err === 'string' ? err : JSON.stringify(err));
+      addTranscriptEntry('system', 'System', `Error: ${errMsg}`);
     });
 
     await vapi.start({
@@ -970,9 +972,10 @@ async function startDemoCall() {
       firstMessage: demo.firstMessage,
     });
   } catch (err) {
+    console.error('Voice call start error:', err);
     demo.callStatus = 'idle';
     setCallUI('idle');
-    errorEl.textContent = err.message || 'Failed to start voice call.';
+    errorEl.textContent = err?.message || String(err) || 'Failed to start voice call.';
     errorEl.style.display = '';
   }
 }
