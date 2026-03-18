@@ -910,7 +910,9 @@ async function startDemoCall() {
     // Load VAPI SDK dynamically via ES module
     if (!window._VapiClass) {
       const module = await import('https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/+esm');
-      window._VapiClass = module.default;
+      // ESM wrapper re-exports CJS module: module.default may be the class or a wrapper with .default
+      const VapiExport = module.default;
+      window._VapiClass = (typeof VapiExport === 'function') ? VapiExport : VapiExport.default;
     }
 
     const vapi = new window._VapiClass(vapiPublicKey);
