@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sword AI — Build & Deploy AI Voice Agents</title>
+  <meta name="description" content="The no-code platform to build, deploy, and scale AI voice agents. 20+ AI models, 50+ voices, CRM & calendar integration. Start free.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://flemkfhpwqnzrikgxhtl.supabase.co/storage/v1/object/public/Sword/Gemini_Generated_Image_kcv44okcv44okcv4.png">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header">
+    <div class="container">
+      <a href="#" class="logo">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="36" y2="36">
+              <stop offset="0%" stop-color="#888"/>
+              <stop offset="100%" stop-color="#DDD"/>
+            </linearGradient>
+          </defs>
+          <rect width="36" height="36" rx="8" fill="url(#logoGrad)"/>
+          <path d="M18 6L12 18L18 15L24 18L18 6Z" fill="#0A0A0A" opacity="0.9"/>
+          <path d="M18 15L12 18L18 30L24 18L18 15Z" fill="#0A0A0A" opacity="0.6"/>
+        </svg>
+        Sword <span class="gradient-text">AI</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#features" data-i18n="navFeatures">Features</a>
+        <a href="#agents" data-i18n="navAgents">AI Agents</a>
+        <a href="#integrations" data-i18n="navIntegrations">Integrations</a>
+        <a href="#pricing" data-i18n="navPricing">Pricing</a>
+        <a href="#how-it-works" data-i18n="navHowItWorks">How It Works</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-toggle">
+          <button data-lang="en">EN</button>
+          <button data-lang="es">ES</button>
+        </div>
+        <a href="#cta" class="btn btn-primary btn-sm" data-i18n="navCTA">Get Started</a>
+      </div>
+
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav">
+    <button class="mobile-nav-close">&times;</button>
+    <a href="#features" data-i18n="navFeatures">Features</a>
+    <a href="#agents" data-i18n="navAgents">AI Agents</a>
+    <a href="#integrations" data-i18n="navIntegrations">Integrations</a>
+    <a href="#pricing" data-i18n="navPricing">Pricing</a>
+    <a href="#how-it-works" data-i18n="navHowItWorks">How It Works</a>
+    <div class="lang-toggle" style="margin-top:16px">
+      <button data-lang="en">EN</button>
+      <button data-lang="es">ES</button>
+    </div>
+    <a href="#cta" class="btn btn-primary" data-i18n="navCTA">Get Started</a>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge" data-i18n="heroBadge">AI Voice Agent Platform</div>
+
+        <h1>
+          <span data-i18n="heroTitle1">Build & Deploy AI Voice Agents That </span>
+          <span class="typing-wrapper"><span class="typing-text" id="typing-text">Book Appointments</span></span>
+        </h1>
+
+        <p class="hero-subtitle" data-i18n="heroSubtitle">
+          Create, configure, and launch AI voice agents in minutes. No-code builder with 20+ AI models, 50+ premium voices, and integrations with your CRM and calendar.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#cta" class="btn btn-primary btn-arrow" data-i18n="heroCTA1">Start Building Free</a>
+          <a href="#how-it-works" class="btn btn-outline" data-i18n="heroCTA2">Book a Demo</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="number" data-i18n="heroStat1">20+</div>
+            <div class="label" data-i18n="heroStat1Label">AI Models</div>
+          </div>
+          <div class="hero-stat">
+            <div class="number" data-i18n="heroStat2">50+</div>
+            <div class="label" data-i18n="heroStat2Label">Voices</div>
+          </div>
+          <div class="hero-stat">
+            <div class="number" data-i18n="heroStat3">24/7</div>
+            <div class="label" data-i18n="heroStat3Label">Availability</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Mockup -->
+      <div class="hero-visual">
+        <div class="hero-phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="phone-header">
+                <div class="phone-avatar">⚔️</div>
+                <div class="phone-name" data-i18n="phoneName">Sword AI Agent</div>
+                <div class="phone-status" data-i18n="phoneStatus">Active Call</div>
+              </div>
+              <div class="call-animation">
+                <div class="wave-bars">
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                  <div class="wave-bar"></div>
+                </div>
+                <div class="call-timer" id="call-timer">02:47</div>
+                <div class="call-status-text" data-i18n="phoneCallStatus">Booking appointment...</div>
+              </div>
+              <div class="phone-actions">
+                <button class="phone-action-btn mute">🔇</button>
+                <button class="phone-action-btn end">📞</button>
+                <button class="phone-action-btn speaker">🔊</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating cards -->
+          <div class="float-card card-1" data-i18n="float1">✅ Appointment Booked</div>
+          <div class="float-card card-2" data-i18n="float2">📞 1,847 Calls Today</div>
+          <div class="float-card card-3" data-i18n="float3">📈 32% Conversion</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== FEATURES ========== -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="features-header reveal">
+        <div class="section-badge" data-i18n="featuresBadge">PLATFORM</div>
+        <h2>
+          <span data-i18n="featuresTitle">A Complete AI Voice </span>
+          <span class="gradient-text" data-i18n="featuresTitleGrad">Agent Builder</span>
+        </h2>
+        <p data-i18n="featuresSubtitle">Everything you need to create, deploy, and scale AI voice agents — from no-code setup to advanced analytics.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">🛠️</div>
+          <h3 data-i18n="feature1Title">No-Code Agent Builder</h3>
+          <p data-i18n="feature1Desc">Create outbound and inbound voice agents through an intuitive dashboard. Configure scripts, personality, and objectives without writing a single line of code.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🧠</div>
+          <h3 data-i18n="feature2Title">20+ AI Models</h3>
+          <p data-i18n="feature2Desc">Choose from GPT-4o, Claude 3.5, Gemini, Llama, DeepSeek, Mistral, and more. Pick the perfect model for your use case and budget.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🎙️</div>
+          <h3 data-i18n="feature3Title">50+ Premium Voices</h3>
+          <p data-i18n="feature3Desc">Natural-sounding voices from ElevenLabs, OpenAI, and PlayHT. Male and female options with adjustable speed, stability, and emotion.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">📅</div>
+          <h3 data-i18n="feature4Title">Calendar & CRM Integration</h3>
+          <p data-i18n="feature4Desc">Native integration with GoHighLevel, Google Calendar, Calendly, HubSpot, and Cal.com. Agents book appointments in real-time.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">📊</div>
+          <h3 data-i18n="feature5Title">Real-Time Call Analytics</h3>
+          <p data-i18n="feature5Desc">Track call outcomes, booking rates, answer rates, cost per booking, and agent performance with comprehensive dashboards.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🏷️</div>
+          <h3 data-i18n="feature6Title">White-Label & Resell</h3>
+          <p data-i18n="feature6Desc">Agency model with custom branding, client management, rate overrides, and multi-tier account hierarchy. Resell under your brand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AI AGENTS ========== -->
+  <section class="agents" id="agents">
+    <div class="container">
+      <div class="agents-header reveal">
+        <div class="section-badge" data-i18n="agentsBadge">AI AGENTS</div>
+        <h2>
+          <span data-i18n="agentsTitle">Deploy Specialized </span>
+          <span class="gradient-text" data-i18n="agentsTitleGrad">AI Voice Agents</span>
+        </h2>
+        <p data-i18n="agentsSubtitle">Build purpose-built agents for every stage of your customer journey.</p>
+      </div>
+
+      <div class="agents-grid">
+        <div class="agent-card reveal">
+          <div class="agent-avatar">📞</div>
+          <h3 data-i18n="agent1Title">Outbound Caller</h3>
+          <p data-i18n="agent1Desc">Automated outbound prospecting at massive scale with personalized AI conversations.</p>
+          <div class="agent-features">
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent1F1">1,000+ simultaneous calls</span></div>
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent1F2">Dynamic scripts per lead</span></div>
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent1F3">Smart objection handling</span></div>
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent1F4">CRM auto-tagging</span></div>
+          </div>
+        </div>
+
+        <div class="agent-card reveal">
+          <div class="agent-avatar">📥</div>
+          <h3 data-i18n="agent2Title">Inbound Handler</h3>
+          <p data-i18n="agent2Desc">Receive and handle incoming calls with intelligent routing and instant responses.</p>
+          <div class="agent-features">
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent2F1">24/7 inbound availability</span></div>
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent2F2">Call transfer & escalation</span></div>
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent2F3">Knowledge base Q&A</span></div>
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent2F4">Real-time booking</span></div>
+          </div>
+        </div>
+
+        <div class="agent-card reveal">
+          <div class="agent-avatar">💬</div>
+          <h3 data-i18n="agent3Title">AI Chatbot</h3>
+          <p data-i18n="agent3Desc">Text-based AI agents with n8n workflow integration for omnichannel engagement.</p>
+          <div class="agent-features">
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent3F1">n8n workflow automation</span></div>
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent3F2">Website widget embed</span></div>
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent3F3">Lead capture & qualification</span></div>
+            <div class="agent-feature"><span class="check">✓</span> <span data-i18n="agent3F4">Multi-channel support</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INTEGRATIONS ========== -->
+  <section class="integrations" id="integrations">
+    <div class="container">
+      <div class="integrations-header reveal">
+        <div class="section-badge" data-i18n="intBadge">INTEGRATIONS</div>
+        <h2>
+          <span data-i18n="intTitle">Connects With Your </span>
+          <span class="gradient-text" data-i18n="intTitleGrad">Entire Stack</span>
+        </h2>
+        <p data-i18n="intSubtitle">Native integrations with the tools you already use. Plus 6,000+ apps via webhooks and API.</p>
+      </div>
+
+      <div class="integrations-grid reveal">
+        <div class="integration-item">
+          <span class="int-icon">🟠</span>
+          <span data-i18n="int1">GoHighLevel</span>
+        </div>
+        <div class="integration-item">
+          <span class="int-icon">📅</span>
+          <span data-i18n="int2">Google Calendar</span>
+        </div>
+        <div class="integration-item">
+          <span class="int-icon">🔵</span>
+          <span data-i18n="int3">Calendly</span>
+        </div>
+        <div class="integration-item">
+          <span class="int-icon">🟧</span>
+          <span data-i18n="int4">HubSpot</span>
+        </div>
+        <div class="integration-item">
+          <span class="int-icon">⬛</span>
+          <span data-i18n="int5">Cal.com</span>
+        </div>
+        <div class="integration-item">
+          <span class="int-icon">🔴</span>
+          <span data-i18n="int6">Twilio</span>
+        </div>
+        <div class="integration-item">
+          <span class="int-icon">🎙️</span>
+          <span data-i18n="int7">ElevenLabs</span>
+        </div>
+        <div class="integration-item">
+          <span class="int-icon">🤖</span>
+          <span data-i18n="int8">OpenAI</span>
+        </div>
+        <div class="integration-item">
+          <span class="int-icon">💬</span>
+          <span data-i18n="int9">Slack</span>
+        </div>
+        <div class="integration-item">
+          <span class="int-icon">⚡</span>
+          <span data-i18n="int10">n8n</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMPARISON ========== -->
+  <section class="comparison" id="comparison">
+    <div class="container">
+      <div class="comparison-header reveal">
+        <div class="section-badge" data-i18n="compBadge">COMPARISON</div>
+        <h2>
+          <span data-i18n="compTitle">Human Reps vs </span>
+          <span class="gradient-text" data-i18n="compTitleGrad">Sword AI</span>
+        </h2>
+        <p data-i18n="compSubtitle">See why businesses are replacing manual calling with AI voice agents.</p>
+      </div>
+
+      <div class="comparison-table reveal">
+        <div class="comparison-row header-row">
+          <div class="comparison-cell" data-i18n="compMetric">Metric</div>
+          <div class="comparison-cell" data-i18n="compHuman">Human Rep</div>
+          <div class="comparison-cell" data-i18n="compAI">Sword AI</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-cell">Monthly Cost</div>
+          <div class="comparison-cell">$3,000-5,000/rep</div>
+          <div class="comparison-cell">From $297/mo</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-cell">Availability</div>
+          <div class="comparison-cell">9 to 5</div>
+          <div class="comparison-cell">24/7/365</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-cell">Simultaneous Calls</div>
+          <div class="comparison-cell">1</div>
+          <div class="comparison-cell">1,000+</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-cell">Training Time</div>
+          <div class="comparison-cell">Weeks / Months</div>
+          <div class="comparison-cell">Minutes</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-cell">Consistency</div>
+          <div class="comparison-cell">Variable</div>
+          <div class="comparison-cell">100% Consistent</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-cell">Scalability</div>
+          <div class="comparison-cell">Hire more reps</div>
+          <div class="comparison-cell">Instant</div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-cell">Languages</div>
+          <div class="comparison-cell">1-2</div>
+          <div class="comparison-cell">20+</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STATS ========== -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-number" data-i18n="stat1">20+</div>
+          <div class="stat-label" data-i18n="stat1Label">AI Models Supported</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-number" data-i18n="stat2">6,000+</div>
+          <div class="stat-label" data-i18n="stat2Label">App Integrations</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-number" data-i18n="stat3">50+</div>
+          <div class="stat-label" data-i18n="stat3Label">Premium Voices</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-number" data-i18n="stat4">24/7</div>
+          <div class="stat-label" data-i18n="stat4Label">Always Available</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="how-header reveal">
+        <div class="section-badge" data-i18n="howBadge">HOW IT WORKS</div>
+        <h2>
+          <span data-i18n="howTitle">Launch Your AI Agent in </span>
+          <span class="gradient-text" data-i18n="howTitleGrad">3 Steps</span>
+        </h2>
+        <p data-i18n="howSubtitle">From zero to making calls in under 30 minutes. No technical skills required.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-number">1</div>
+          <h3 data-i18n="step1Title">Create Your Agent</h3>
+          <p data-i18n="step1Desc">Choose outbound or inbound, select your AI model and voice, write your prompt and objectives. Our agent generator can even write it for you.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-number">2</div>
+          <h3 data-i18n="step2Title">Connect Your Tools</h3>
+          <p data-i18n="step2Desc">Import your Twilio phone numbers, connect your CRM (GoHighLevel, HubSpot), link your calendar (Google, Calendly, Cal.com), and configure webhooks.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-number">3</div>
+          <h3 data-i18n="step3Title">Launch & Monitor</h3>
+          <p data-i18n="step3Desc">Start making calls instantly. Track outcomes, booking rates, and costs in real-time. Scale from 10 to 10,000 calls per day with one click.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRICING ========== -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="pricing-header reveal">
+        <div class="section-badge" data-i18n="pricingBadge">PRICING</div>
+        <h2>
+          <span data-i18n="pricingTitle">Transparent </span>
+          <span class="gradient-text" data-i18n="pricingTitleGrad">Pay-As-You-Go</span>
+        </h2>
+        <p data-i18n="pricingSubtitle">Dynamic per-minute pricing based on your AI model and transcriber choice. No hidden fees.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Starter -->
+        <div class="pricing-card reveal">
+          <h3 data-i18n="plan1Name">Starter</h3>
+          <div class="price">$297<span data-i18n="plan1Period">/mo</span></div>
+          <p class="price-desc" data-i18n="plan1Desc">For individual agents and small teams getting started.</p>
+          <div class="pricing-features">
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan1F1">500 minutes/month</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan1F2">Up to 3 agents</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan1F3">GPT-4o & Claude 3.5</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan1F4">Calendar integration</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan1F5">Email support</span></div>
+          </div>
+          <a href="#cta" class="btn btn-outline" data-i18n="plan1CTA">Start Free Trial</a>
+        </div>
+
+        <!-- Professional -->
+        <div class="pricing-card featured reveal">
+          <div class="popular-badge" data-i18n="popular">Most Popular</div>
+          <h3 data-i18n="plan2Name">Professional</h3>
+          <div class="price">$697<span data-i18n="plan2Period">/mo</span></div>
+          <p class="price-desc" data-i18n="plan2Desc">For growing businesses that need more agents and power.</p>
+          <div class="pricing-features">
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan2F1">2,500 minutes/month</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan2F2">Unlimited agents</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan2F3">All 20+ AI models</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan2F4">Advanced analytics</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan2F5">Priority support</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan2F6">Custom voices</span></div>
+          </div>
+          <a href="#cta" class="btn btn-primary" data-i18n="plan2CTA">Start Free Trial</a>
+        </div>
+
+        <!-- Agency -->
+        <div class="pricing-card reveal">
+          <h3 data-i18n="plan3Name">Agency</h3>
+          <div class="price" data-i18n="plan3Price">Custom</div>
+          <p class="price-desc" data-i18n="plan3Desc">White-label platform for agencies managing multiple clients.</p>
+          <div class="pricing-features">
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan3F1">Unlimited minutes</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan3F2">Client management</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan3F3">Custom branding</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan3F4">Rate overrides</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan3F5">HIPAA compliance</span></div>
+            <div class="pricing-feature"><span class="check">✓</span> <span data-i18n="plan3F6">Dedicated support</span></div>
+          </div>
+          <a href="#cta" class="btn btn-outline" data-i18n="plan3CTA">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA / BOOKING ========== -->
+  <section class="cta" id="cta">
+    <div class="container">
+      <div class="cta-box reveal">
+        <div class="cta-content">
+          <h2>
+            <span data-i18n="ctaTitle">Ready to Build Your First </span>
+            <span class="gradient-text" data-i18n="ctaTitleGrad">AI Voice Agent?</span>
+          </h2>
+          <p data-i18n="ctaSubtitle">Book a free 30-minute growth session with our team and see Sword AI in action.</p>
+        </div>
+        <div class="calendly-wrapper">
+          <!-- Calendly inline widget begin -->
+          <div class="calendly-inline-widget" data-url="https://calendly.com/jorge-swordaisolutions/30min" style="min-width:320px;height:700px;"></div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+          <!-- Calendly inline widget end -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="logoGrad2" x1="0" y1="0" x2="36" y2="36">
+                  <stop offset="0%" stop-color="#888"/>
+                  <stop offset="100%" stop-color="#DDD"/>
+                </linearGradient>
+              </defs>
+              <rect width="36" height="36" rx="8" fill="url(#logoGrad2)"/>
+              <path d="M18 6L12 18L18 15L24 18L18 6Z" fill="#0A0A0A" opacity="0.9"/>
+              <path d="M18 15L12 18L18 30L24 18L18 15Z" fill="#0A0A0A" opacity="0.6"/>
+            </svg>
+            Sword <span class="gradient-text">AI</span>
+          </a>
+          <p data-i18n="footerDesc">The no-code platform to build, deploy, and scale AI voice agents and chatbots for sales, support, and automation.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-link" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footerProduct">Product</h4>
+          <a href="#pricing" data-i18n="footerPricing">Pricing</a>
+          <a href="#agents" data-i18n="footerVoiceAgents">Voice Agents</a>
+          <a href="#agents" data-i18n="footerChatbots">Chatbots</a>
+          <a href="#integrations" data-i18n="footerIntegrations">Integrations</a>
+          <a href="#" data-i18n="footerAPI">API & Webhooks</a>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footerCompany">Company</h4>
+          <a href="#" data-i18n="footerAbout">About Us</a>
+          <a href="#" data-i18n="footerCareers">Careers</a>
+          <a href="#" data-i18n="footerBlog">Blog</a>
+          <a href="#" data-i18n="footerContact">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footerLegal">Legal</h4>
+          <a href="#" data-i18n="footerTerms">Terms of Service</a>
+          <a href="#" data-i18n="footerPrivacy">Privacy Policy</a>
+          <a href="#" data-i18n="footerHIPAA">HIPAA Compliance</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span data-i18n="footerCopyright">© 2025 Sword AI. All rights reserved.</span>
+        <div class="lang-toggle">
+          <button data-lang="en">EN</button>
+          <button data-lang="es">ES</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
