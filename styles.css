@@ -1094,6 +1094,51 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-weight: 600; line-height: 1.3
   justify-content: center;
 }
 
+/* ========== TRY DEMO SECTION ========== */
+.try-demo {
+  padding: 120px 0;
+}
+
+.try-demo-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 48px;
+}
+
+.try-demo-header p {
+  color: var(--text-muted);
+  margin-top: 16px;
+  font-size: 1.1rem;
+}
+
+.demo-iframe-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--dark-card);
+}
+
+.demo-iframe {
+  width: 100%;
+  height: 850px;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .demo-iframe {
+    height: 750px;
+  }
+}
+
+@media (max-width: 480px) {
+  .demo-iframe {
+    height: 650px;
+  }
+}
+
 /* ========== CTA SECTION ========== */
 .cta {
   padding: 120px 0;

@@ -172,6 +172,13 @@ const translations = {
     plan3CTA: 'Contact Sales',
     popular: 'Most Popular',
 
+    // Demo
+    navDemo: 'Try Demo',
+    demoBadge: 'LIVE DEMO',
+    demoTitle: 'Try Your AI Agent ',
+    demoTitleGrad: 'Right Now',
+    demoSubtitle: 'Generate a custom AI chat and voice agent for your business in seconds. No sign-up required.',
+
     // CTA
     ctaTitle: 'Ready to Build Your First ',
     ctaTitleGrad: 'AI Voice Agent?',
@@ -368,6 +375,13 @@ const translations = {
     plan3F6: 'Soporte dedicado',
     plan3CTA: 'Contactar Ventas',
     popular: 'Más Popular',
+
+    // Demo
+    navDemo: 'Probar Demo',
+    demoBadge: 'DEMO EN VIVO',
+    demoTitle: 'Prueba Tu Agente IA ',
+    demoTitleGrad: 'Ahora Mismo',
+    demoSubtitle: 'Genera un agente de chat y voz IA personalizado para tu negocio en segundos. Sin registro.',
 
     // CTA
     ctaTitle: '¿Listo Para Crear Tu Primer ',
