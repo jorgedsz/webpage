@@ -619,6 +619,25 @@ function initLogoScroll() {
 // ========== DEMO ENGINE ==========
 const DEMO_API = 'https://app.swordaisolutions.com/api/demo';
 
+const AGENT_NAMES = {
+  English: ['Alex', 'Jordan', 'Sam', 'Morgan', 'Taylor', 'Casey', 'Riley', 'Avery', 'Quinn', 'Blake'],
+  Spanish: ['Carlos', 'Sofía', 'Mateo', 'Valentina', 'Diego', 'Camila', 'Andrés', 'Lucía', 'Pablo', 'Elena'],
+};
+
+const LANG_CODES = {
+  English: 'en',
+  Spanish: 'es',
+  French: 'fr',
+  German: 'de',
+  Italian: 'it',
+  Portuguese: 'pt',
+};
+
+function getRandomAgentName(language) {
+  const names = AGENT_NAMES[language] || AGENT_NAMES.English;
+  return names[Math.floor(Math.random() * names.length)];
+}
+
 const DEMO_VOICES = {
   English: [
     { id: '21m00Tcm4TlvDq8ikWAM', name: 'Rachel', desc: 'Female — Warm & Friendly' },
@@ -958,16 +977,25 @@ async function startDemoCall() {
       addTranscriptEntry('system', 'System', `Error: ${errMsg}`);
     });
 
+    const agentName = getRandomAgentName(demo.selectedLanguage);
+    const langCode = LANG_CODES[demo.selectedLanguage] || 'en';
+
     await vapi.start({
+      name: agentName,
       model: {
         provider: 'openai',
         model: 'gpt-4o-mini',
-        messages: [{ role: 'system', content: demo.voicebotPrompt }],
+        messages: [{ role: 'system', content: `Your name is ${agentName}. ` + demo.voicebotPrompt }],
       },
       voice: {
         provider: '11labs',
         voiceId: demo.selectedVoice,
         ...(demo.selectedLanguage !== 'English' && { model: 'eleven_multilingual_v2' }),
+      },
+      transcriber: {
+        provider: 'deepgram',
+        model: 'nova-2',
+        language: langCode,
       },
       firstMessage: demo.firstMessage,
     });
