@@ -1014,6 +1014,12 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-weight: 600; line-height: 1.3
   padding: 40px 32px;
   position: relative;
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card .pricing-features {
+  flex: 1;
 }
 
 .pricing-card.featured {
