@@ -383,7 +383,7 @@ const translations = {
     plan3F2: 'Estructura base del sistema',
     plan3F3: 'Documentación paso a paso',
     plan3F4: 'Sin intervención directa',
-    plan3Ideal: '💡 Ideal para: personas técnicas que prefieren aprender por su cuenta',
+    plan3Ideal: '💡 Ideal para: personas técnicas',
     plan3CTA: 'Agendar Llamada',
     popular: 'Recomendado',
 
