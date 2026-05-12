@@ -638,7 +638,6 @@ const DEMO_VOICES = {
     { id: '29vD33N1CtxCmqQRPOHJ', name: 'Drew', desc: 'Male — Confident & Warm' },
   ],
   Spanish: [
-    { id: 'FGY2WhFZPnopRgpkkpcg', name: 'Laura', desc: 'Femenina — Cálida y Natural' },
     { id: 'XrExE9yKIg1WjnnlVkGX', name: 'Matilda', desc: 'Femenina — Profesional' },
     { id: 'Xb7hH8MSUJpSbSDYk0k2', name: 'Alice', desc: 'Femenina — Clara y Amable' },
     { id: 'cgSgspJ2msm6clMCkdW9', name: 'Jessica', desc: 'Femenina — Expresiva' },
