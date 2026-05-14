@@ -1169,5 +1169,56 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
+
+<script>
+const VOICES = [
+  { country: '🇨🇴 Colombiana', options: [{ value: 'lina', label: 'Lina' }, { value: 'cristian', label: 'Cristian' }] },
+  { country: '🇻🇪 Venezolana', options: [{ value: 'paul', label: 'Paul' }, { value: 'ligia', label: 'Ligia' }] },
+  { country: '🇦🇷 Argentina', options: [{ value: 'malena', label: 'Malena' }, { value: 'agustin', label: 'Agustín' }] },
+  { country: '🇲🇽 Mexicana', options: [{ value: 'camila', label: 'Camila' }, { value: 'enrique', label: 'Enrique' }] },
+  { country: '🇩🇴 Dominicana', options: [{ value: 'diana', label: 'Diana' }, { value: 'tony', label: 'Tony' }] },
+];
+
+const voiceDropdown = document.getElementById('voice-dropdown');
+
+VOICES.forEach(group => {
+  const header = document.createElement('div');
+  header.style.cssText = 'padding:8px 14px 4px;font-size:11px;font-weight:600;color:#7a9088;letter-spacing:0.5px;text-transform:uppercase;';
+  header.textContent = group.country;
+  voiceDropdown.appendChild(header);
+
+  group.options.forEach(opt => {
+    const item = document.createElement('div');
+    item.style.cssText = 'padding:10px 14px 10px 20px;cursor:pointer;color:#f0f5f2;font-size:14px;transition:background 0.15s;';
+    item.textContent = opt.label;
+    item.onmouseenter = () => item.style.background = 'rgba(0,200,150,0.08)';
+    item.onmouseleave = () => item.style.background = 'transparent';
+    item.onclick = () => selectVoice(opt.value, opt.label + ' — ' + group.country);
+    voiceDropdown.appendChild(item);
+  });
+});
+
+function selectVoice(value, label) {
+  document.getElementById('voice').value = value;
+  document.getElementById('voice-label').textContent = label;
+  document.getElementById('voice-label').style.color = '#f0f5f2';
+  toggleVoiceDropdown(false);
+}
+
+function toggleVoiceDropdown(force) {
+  const dd = document.getElementById('voice-dropdown');
+  const isOpen = dd.style.display === 'block';
+  const shouldOpen = force !== undefined ? force : !isOpen;
+  dd.style.display = shouldOpen ? 'block' : 'none';
+  document.getElementById('voice-selected').style.borderColor = shouldOpen ? 'rgba(0,200,150,0.4)' : '';
+}
+
+document.addEventListener('click', function(e) {
+  if (!document.getElementById('voice-picker').contains(e.target)) {
+    toggleVoiceDropdown(false);
+  }
+});
+</script>
+
 </body>
 </html>
