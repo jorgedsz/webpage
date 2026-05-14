@@ -276,7 +276,9 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-weight: 600; line-height: 1.3
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
   position: relative;
   padding: 120px 0 80px;
   background: var(--gradient-hero);
@@ -394,16 +396,16 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-weight: 600; line-height: 1.3
 .hero-form {
   flex: 1;
   max-width: 600px;
+  height: 754px;
   animation: fadeInUp 0.6s ease 0.2s both;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
 }
 
 .hero-form iframe {
-  width: 100%;
-  min-height: 720px;
-  border: none;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.02);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  display: block;
 }
 
 .hero-schedule {
@@ -1845,8 +1847,7 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-weight: 600; line-height: 1.3
   .hero-actions { justify-content: center; }
   .hero-stats { justify-content: center; }
   .hero-visual { margin-top: 40px; }
-  .hero-form { max-width: 100%; margin-top: 32px; width: 100%; }
-  .hero-form iframe { min-height: 640px; }
+  .hero-form { max-width: 100%; margin-top: 32px; width: 100%; height: 754px; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .agents-grid { grid-template-columns: repeat(2, 1fr); }
   .pricing-grid { grid-template-columns: repeat(2, 1fr); }
