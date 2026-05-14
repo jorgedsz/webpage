@@ -391,6 +391,33 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-weight: 600; line-height: 1.3
   animation: fadeInUp 0.8s ease 0.3s both;
 }
 
+.hero-form {
+  flex: 1;
+  max-width: 600px;
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+.hero-form iframe {
+  width: 100%;
+  min-height: 720px;
+  border: none;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero-schedule {
+  margin-top: 48px;
+  text-align: center;
+  animation: fadeInUp 0.6s ease 0.5s both;
+}
+
+.hero-schedule-label {
+  font-size: 0.95rem;
+  color: var(--muted, #9ca3af);
+  margin-bottom: 14px;
+}
+
 .hero-phone {
   position: relative;
   width: 300px;
@@ -1818,6 +1845,8 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-weight: 600; line-height: 1.3
   .hero-actions { justify-content: center; }
   .hero-stats { justify-content: center; }
   .hero-visual { margin-top: 40px; }
+  .hero-form { max-width: 100%; margin-top: 32px; width: 100%; }
+  .hero-form iframe { min-height: 640px; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .agents-grid { grid-template-columns: repeat(2, 1fr); }
   .pricing-grid { grid-template-columns: repeat(2, 1fr); }
