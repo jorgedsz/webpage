@@ -1082,5 +1082,20 @@ async function handleSubmit(e) {
   </div>
 </div>
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+<script>
+function openCalModal(e) {
+  e.preventDefault();
+  var modal = document.getElementById('cal-modal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeCalModal() {
+  document.getElementById('cal-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.getElementById('cal-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeCalModal();
+});
+</script>
 </body>
 </html>
