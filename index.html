@@ -1175,20 +1175,20 @@ document.addEventListener('click', function(e) {
 <script>
 const VOICES = [
   { country: '🇨🇴 Colombiana', options: [
-    { value: 'lina', label: 'Lina', audio: 'https://drive.google.com/uc?export=download&id=15Jq70t83qwbaCaQXl4TQC_JdlgEDlrw9' },
-    { value: 'cristian', label: 'Cristian', audio: 'https://drive.google.com/uc?export=download&id=1uldsiw4SvL4LEC-ZXWxDc2JL_IbrQtIF' }
+    { value: 'lina', label: 'Lina', audio: 'audio/voice_preview_lina%20-%20sunny%2C%20kind%20and%20friendly%20(1).mp3' },
+    { value: 'cristian', label: 'Cristian', audio: 'audio/voice_preview_cristian%20sanchez%20-%20lively%20and%20deep%20(1).mp3' }
   ]},
   { country: '🇻🇪 Venezolana', options: [
-    { value: 'paul', label: 'Paul', audio: 'https://drive.google.com/uc?export=download&id=16tpQTbmv5PUNdvtqceKOhYTy55sko1dG' },
-    { value: 'ligia', label: 'Ligia', audio: 'https://drive.google.com/uc?export=download&id=1MlsJ9UQSXyH4IwbLMM7bNg4MPVKEeHrp' }
+    { value: 'paul', label: 'Paul', audio: 'audio/voice_preview_paul%20-%20crisp%2C%20rich%20and%20educational%20(1).mp3' },
+    { value: 'ligia', label: 'Ligia', audio: 'audio/voice_preview_ligia%20elena%20-%20calm%2C%20polished%20and%20neutral.mp3' }
   ]},
   { country: '🇦🇷 Argentina', options: [
-    { value: 'malena', label: 'Malena', audio: 'https://drive.google.com/uc?export=download&id=16TryUlQVNiD7qIvOLyehf7h8bkeTq2Eu' },
-    { value: 'agustin', label: 'Agustín', audio: 'https://drive.google.com/uc?export=download&id=17UMBCLxmbJEoE0eyGxC-O-0HUVrMeHy7' }
+    { value: 'malena', label: 'Malena', audio: 'audio/voice_preview_malena%20-%20warm%2C%20dynamic%20and%20confident%20(1).mp3' },
+    { value: 'agustin', label: 'Agustín', audio: 'audio/voice_preview_agust%C3%ADn%20-%20relaxed%2C%20warm%20and%20approachable.mp3' }
   ]},
   { country: '🇲🇽 Mexicana', options: [
-    { value: 'camila', label: 'Camila', audio: 'https://drive.google.com/uc?export=download&id=14paQRzcTbX4s9guOr86r8xnNQq4CEOJY' },
-    { value: 'enrique', label: 'Enrique', audio: 'https://drive.google.com/uc?export=download&id=1bIExG_rmRmqIQucH1qT12ea3AK-PEYdb' }
+    { value: 'camila', label: 'Camila', audio: 'audio/voice_preview_camila%20-%20inviting%2C%20rich%20and%20warm.mp3' },
+    { value: 'enrique', label: 'Enrique', audio: 'audio/voice_preview_enrique%20gonz%C3%A1lez%20-%20lively%20and%20engaging.mp3' }
   ]},
   { country: '🇩🇴 Dominicana', options: [
     { value: 'diana', label: 'Diana', audio: null },
@@ -1224,6 +1224,7 @@ VOICES.forEach(group => {
       playBtn.onclick = (e) => {
         e.stopPropagation();
         if (currentAudio) {
+          const wasSame = currentAudio._voiceKey === opt.value;
           currentAudio.pause();
           currentAudio.currentTime = 0;
           document.querySelectorAll('.play-btn-active').forEach(b => {
@@ -1231,12 +1232,13 @@ VOICES.forEach(group => {
             b.classList.remove('play-btn-active');
             b.style.background = 'rgba(0,200,150,0.12)';
           });
-          if (currentAudio.src.includes(opt.audio.split('id=')[1])) {
+          if (wasSame) {
             currentAudio = null;
             return;
           }
         }
         const audio = new Audio(opt.audio);
+        audio._voiceKey = opt.value;
         currentAudio = audio;
         playBtn.innerHTML = '<svg width="10" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
         playBtn.classList.add('play-btn-active');
