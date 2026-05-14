@@ -10,16 +10,16 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --green: #00e87a;
-    --green-dim: #00c265;
-    --green-glow: rgba(0,232,122,0.15);
-    --green-subtle: rgba(0,232,122,0.07);
-    --bg: #070a09;
-    --bg2: #0d1310;
-    --bg3: #111a15;
+    --green: #00c896;
+    --green-dim: #00a87d;
+    --green-glow: rgba(0,200,150,0.15);
+    --green-subtle: rgba(0,200,150,0.07);
+    --bg: #0e1612;
+    --bg2: #152019;
+    --bg3: #1a2b22;
     --text: #f0f5f2;
     --muted: #7a9088;
-    --border: rgba(0,232,122,0.12);
+    --border: rgba(0,200,150,0.12);
     --border-dim: rgba(255,255,255,0.06);
   }
 
@@ -118,6 +118,8 @@
 
   /* HERO */
   .hero {
+    max-width: 1100px;
+    margin: 0 auto;
     min-height: 100vh;
     padding: 120px 10% 80px;
     display: grid;
@@ -135,7 +137,7 @@
     right: -100px;
     width: 700px;
     height: 700px;
-    background: radial-gradient(circle, rgba(0,232,122,0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0,200,150,0.08) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -479,7 +481,7 @@
     font-family: 'Syne', sans-serif;
     font-size: 48px;
     font-weight: 800;
-    color: rgba(0,232,122,0.08);
+    color: rgba(0,200,150,0.08);
     line-height: 1;
     margin-bottom: 16px;
   }
@@ -527,7 +529,7 @@
     transform: translate(-50%, -50%);
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(0,232,122,0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0,200,150,0.05) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -745,7 +747,9 @@
   /* FOOTER */
   footer {
     border-top: 1px solid var(--border-dim);
-    padding: 40px 10%;
+    padding: 40px 5%;
+    max-width: 960px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -804,6 +808,8 @@
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .hero {
+    max-width: 1100px;
+    margin: 0 auto;
       grid-template-columns: 1fr;
       padding-top: 100px;
     }
@@ -838,12 +844,15 @@
   .delay-2 { animation-delay: 0.2s; }
   .delay-3 { animation-delay: 0.35s; }
   .delay-4 { animation-delay: 0.5s; }
+
+  .container { max-width: 960px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
+<div class="container">
   <a href="#" class="nav-logo">
     <div class="nav-logo-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="#070a09" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -862,6 +871,7 @@
   </ul>
 
   <a href="#form" class="nav-cta">Probar ahora →</a>
+</div>
 </nav>
 
 <!-- HERO -->
@@ -932,44 +942,49 @@
       <h3>Testea el agente ahora</h3>
       <p>Déjanos tus datos y nuestro agente te llama en menos de 2 minutos.</p>
 
-      <form onsubmit="handleSubmit(event)">
+      <form onsubmit="handleSubmit(event)" id="main-form">
         <div class="form-row">
           <div class="form-group">
-            <label>Nombre *</label>
-            <input type="text" placeholder="Tu nombre" required>
+            <label>First Name *</label>
+            <input type="text" id="firstName" placeholder="First Name" required>
           </div>
           <div class="form-group">
-            <label>Apellido *</label>
-            <input type="text" placeholder="Tu apellido" required>
+            <label>Last Name *</label>
+            <input type="text" id="lastName" placeholder="Last Name" required>
           </div>
-        </div>
-
-        <div class="form-group">
-          <label>Teléfono / WhatsApp *</label>
-          <input type="tel" placeholder="+1 (555) 000-0000" required>
         </div>
 
         <div class="form-group">
           <label>Email *</label>
-          <input type="email" placeholder="tu@empresa.com" required>
+          <input type="email" id="email" placeholder="Email" required>
         </div>
 
         <div class="form-group">
-          <label>Tipo de negocio</label>
-          <select>
-            <option value="">Selecciona tu industria</option>
-            <option>Agencia de marketing</option>
-            <option>Bienes raíces</option>
-            <option>Salud y medicina</option>
-            <option>E-commerce</option>
-            <option>Educación</option>
-            <option>Servicios financieros</option>
-            <option>Otro</option>
+          <label>Phone *</label>
+          <input type="tel" id="phone" placeholder="+1 (555) 000-0000" required>
+        </div>
+
+        <div class="form-group">
+          <label>Instrucciones / Script *</label>
+          <textarea id="script" rows="4" placeholder="Describe el rol, objetivo y tono de tu agente..." required style="resize:vertical;"></textarea>
+          <p style="font-size:11px; color:#3d5047; margin-top:6px; line-height:1.5;">Cuéntale a tu agente quién es, qué hace y cómo debe hablar. Mientras más detalle le des, mejor será la conversación.</p>
+        </div>
+
+        <div class="form-group">
+          <label>Escoge Alguna De Nuestras Voces *</label>
+          <select id="voice" required>
+            <option value="">Selecciona una voz</option>
+            <option value="voz-masculina-1">Voz Masculina — Carlos</option>
+            <option value="voz-masculina-2">Voz Masculina — Andrés</option>
+            <option value="voz-femenina-1">Voz Femenina — Sofía</option>
+            <option value="voz-femenina-2">Voz Femenina — Valentina</option>
           </select>
         </div>
 
-        <button type="submit" class="form-submit">
-          ¡Llámame ahora!
+        <div id="form-error" style="display:none; color:#ff4d4d; font-size:13px; margin-bottom:10px;"></div>
+
+        <button type="submit" class="form-submit" id="submit-btn">
+          ¡LLAMAME!
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
           </svg>
@@ -1004,12 +1019,46 @@
 </footer>
 
 <script>
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  btn.textContent = '✓ ¡Enviado! Te llamamos pronto.';
-  btn.style.background = '#00c265';
+  const btn = document.getElementById('submit-btn');
+  const errorDiv = document.getElementById('form-error');
+  errorDiv.style.display = 'none';
+
+  btn.textContent = 'Enviando...';
   btn.disabled = true;
+  btn.style.opacity = '0.7';
+
+  const payload = {
+    firstName: document.getElementById('firstName').value,
+    lastName: document.getElementById('lastName').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    script: document.getElementById('script').value,
+    voice: document.getElementById('voice').value,
+  };
+
+  try {
+    const res = await fetch('https://primary-production-b7ae.up.railway.app/webhook/a5026a28-3eb6-4b0b-8d40-03e27e573385', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (res.ok) {
+      btn.textContent = '✓ ¡Enviado! Te llamamos pronto.';
+      btn.style.background = '#00a87d';
+      btn.style.opacity = '1';
+    } else {
+      throw new Error('Error del servidor');
+    }
+  } catch (err) {
+    btn.textContent = '¡LLAMAME!';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    errorDiv.textContent = 'Hubo un error al enviar. Intenta de nuevo.';
+    errorDiv.style.display = 'block';
+  }
 }
 </script>
 
