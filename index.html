@@ -1,247 +1,1017 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; connect-src *; media-src * blob:; worker-src * blob:;">
-  <title>Sword AI — Build & Deploy AI Voice Agents</title>
-  <meta name="description" content="The no-code platform to build, deploy, and scale AI voice agents. 20+ AI models, 50+ voices, CRM & calendar integration. Start free.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sword AI Solutions — Agente de IA que vende por ti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  :root {
+    --green: #00e87a;
+    --green-dim: #00c265;
+    --green-glow: rgba(0,232,122,0.15);
+    --green-subtle: rgba(0,232,122,0.07);
+    --bg: #070a09;
+    --bg2: #0d1310;
+    --bg3: #111a15;
+    --text: #f0f5f2;
+    --muted: #7a9088;
+    --border: rgba(0,232,122,0.12);
+    --border-dim: rgba(255,255,255,0.06);
+  }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://flemkfhpwqnzrikgxhtl.supabase.co/storage/v1/object/public/Sword/Gemini_Generated_Image_kcv44okcv44okcv4.png">
+  html { scroll-behavior: smooth; }
 
-  <link rel="stylesheet" href="styles.css?v=3">
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1673877870313180');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1673877870313180&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
+  h1, h2, h3, h4 { font-family: 'Syne', sans-serif; line-height: 1.15; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 68px;
+    background: rgba(7,10,9,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--green);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-logo-icon svg { width: 20px; height: 20px; }
+
+  .nav-logo span {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  .nav-logo span em {
+    font-style: normal;
+    color: var(--green);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--green);
+    color: #070a09;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .nav-cta:hover { background: var(--green-dim); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 5% 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -100px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(0,232,122,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-subtle);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green);
+    letter-spacing: 0.5px;
+    margin-bottom: 28px;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-headline {
+    font-size: clamp(36px, 4.5vw, 58px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .hero-headline .accent { color: var(--green); }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 40px;
+    max-width: 460px;
+    line-height: 1.7;
+  }
+
+  .benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 44px;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .benefit-icon {
+    width: 22px;
+    height: 22px;
+    background: var(--green-subtle);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .benefit-icon svg { width: 11px; height: 11px; stroke: var(--green); }
+
+  .benefit-text { font-size: 15px; color: var(--muted); }
+  .benefit-text strong { color: var(--text); font-weight: 500; }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: #070a09;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--green-dim); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-dim);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--border); color: var(--green); }
+
+  /* HERO RIGHT — FORM CARD */
+  .hero-right {
+    position: relative;
+  }
+
+  .form-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+  }
+
+  .form-card-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .form-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .form-card p {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border-dim);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--green);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: #3d5047; }
+
+  .form-group select { appearance: none; cursor: pointer; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .form-submit {
+    width: 100%;
+    background: var(--green);
+    color: #070a09;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .form-submit:hover { background: var(--green-dim); transform: translateY(-1px); }
+
+  .form-privacy {
+    text-align: center;
+    font-size: 11px;
+    color: #3d5047;
+    margin-top: 12px;
+  }
+
+  /* LOGOS */
+  .logos-section {
+    padding: 60px 5%;
+    border-top: 1px solid var(--border-dim);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .logos-label {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #3d5047;
+    margin-bottom: 32px;
+  }
+
+  .logos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 32px;
+    align-items: center;
+  }
+
+  .logo-pill {
+    background: var(--bg2);
+    border: 1px solid var(--border-dim);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #3d5047;
+    letter-spacing: 0.5px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .logo-pill:hover { border-color: var(--border); color: var(--muted); }
+
+  /* HOW IT WORKS */
+  .how-section {
+    padding: 100px 5%;
+    position: relative;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 520px;
+    margin: 0 auto 64px;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .step-card {
+    background: var(--bg2);
+    border: 1px solid var(--border-dim);
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .step-card:hover { border-color: var(--border); }
+
+  .step-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    color: rgba(0,232,122,0.08);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--green-subtle);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .step-icon svg { width: 20px; height: 20px; stroke: var(--green); }
+
+  .step-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .step-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* DEMO PLAYER */
+  .demo-section {
+    padding: 100px 5%;
+    background: var(--bg2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .demo-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,232,122,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .demo-player {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    position: relative;
+  }
+
+  .demo-wave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 60px;
+    margin: 24px 0;
+  }
+
+  .demo-wave span {
+    display: block;
+    width: 4px;
+    background: var(--green);
+    border-radius: 4px;
+    animation: wave 1.4s ease-in-out infinite;
+  }
+
+  .demo-wave span:nth-child(1) { height: 20px; animation-delay: 0s; }
+  .demo-wave span:nth-child(2) { height: 35px; animation-delay: 0.1s; }
+  .demo-wave span:nth-child(3) { height: 50px; animation-delay: 0.2s; }
+  .demo-wave span:nth-child(4) { height: 40px; animation-delay: 0.3s; }
+  .demo-wave span:nth-child(5) { height: 55px; animation-delay: 0.4s; }
+  .demo-wave span:nth-child(6) { height: 30px; animation-delay: 0.5s; }
+  .demo-wave span:nth-child(7) { height: 45px; animation-delay: 0.6s; }
+  .demo-wave span:nth-child(8) { height: 20px; animation-delay: 0.7s; }
+  .demo-wave span:nth-child(9) { height: 35px; animation-delay: 0.6s; }
+  .demo-wave span:nth-child(10) { height: 25px; animation-delay: 0.5s; }
+  .demo-wave span:nth-child(11) { height: 45px; animation-delay: 0.4s; }
+  .demo-wave span:nth-child(12) { height: 50px; animation-delay: 0.3s; }
+  .demo-wave span:nth-child(13) { height: 30px; animation-delay: 0.2s; }
+  .demo-wave span:nth-child(14) { height: 20px; animation-delay: 0.1s; }
+
+  @keyframes wave {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+
+  .demo-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .demo-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .demo-tag {
+    display: inline-block;
+    background: var(--green-subtle);
+    border: 1px solid var(--border);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+  }
+
+  /* STATS */
+  .stats-section {
+    padding: 100px 5%;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-dim);
+    border: 1px solid var(--border-dim);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 60px;
+  }
+
+  .stat-block {
+    background: var(--bg);
+    padding: 48px 40px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* CTA FINAL */
+  .cta-section {
+    padding: 100px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,232,122,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .cta-section p {
+    color: var(--muted);
+    font-size: 17px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--green);
+    border: 1px solid var(--border);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover { background: var(--green-subtle); }
+
+  .team-avatars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg3);
+    border: 2px solid var(--bg);
+    margin-left: -12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--green);
+  }
+
+  .avatar:first-child { margin-left: 0; }
+  .avatar.av1 { background: #0d2218; }
+  .avatar.av2 { background: #122b1f; }
+  .avatar.av3 { background: #0a1c13; }
+  .avatar.av4 { background: #162e22; }
+
+  .team-caption {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border-dim);
+    padding: 40px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .footer-logo-icon {
+    width: 30px;
+    height: 30px;
+    background: var(--green);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-logo-icon svg { width: 16px; height: 16px; }
+
+  .footer-logo span {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text);
+  }
+
+  .footer-logo span em { font-style: normal; color: var(--green); }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-copy {
+    font-size: 12px;
+    color: #3d5047;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding-top: 100px;
+    }
+
+    .steps-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; }
+
+    .nav-links { display: none; }
+
+    .form-row { grid-template-columns: 1fr; }
+
+    footer {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-links { justify-content: center; }
+  }
+
+  /* FADE IN ANIMATION */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.35s; }
+  .delay-4 { animation-delay: 0.5s; }
+</style>
 </head>
 <body>
 
-  <!-- ========== HEADER ========== -->
-  <header class="header">
-    <div class="container">
-      <a href="#" class="logo">
-        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="logoGrad" x1="0" y1="0" x2="36" y2="36">
-              <stop offset="0%" stop-color="#888"/>
-              <stop offset="100%" stop-color="#DDD"/>
-            </linearGradient>
-          </defs>
-          <rect width="36" height="36" rx="8" fill="url(#logoGrad)"/>
-          <path d="M18 6L12 18L18 15L24 18L18 6Z" fill="#0A0A0A" opacity="0.9"/>
-          <path d="M18 15L12 18L18 30L24 18L18 15Z" fill="#0A0A0A" opacity="0.6"/>
-        </svg>
-        Sword <span class="gradient-text">AI</span>
-      </a>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#070a09" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5"/>
+        <path d="M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    <span>Sword <em>AI</em></span>
+  </a>
 
-      <nav class="nav-links">
-        <a href="#cta" data-i18n="navBook">Agendar</a>
-      </nav>
+  <ul class="nav-links">
+    <li><a href="#como-funciona">Cómo funciona</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#agendar">Contacto</a></li>
+  </ul>
 
-      <div class="header-actions">
-        <div class="lang-toggle">
-          <button data-lang="en">EN</button>
-          <button data-lang="es">ES</button>
+  <a href="#form" class="nav-cta">Probar ahora →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="badge fade-up">
+      <span class="badge-dot"></span>
+      Agente de IA disponible 24/7
+    </div>
+
+    <h1 class="hero-headline fade-up delay-1">
+      Tu agente de IA que <span class="accent">vende y agenda</span> sin parar
+    </h1>
+
+    <p class="hero-sub fade-up delay-2">
+      Sword AI responde leads en segundos, agenda citas automáticamente y cierra ventas — sin que tu equipo levante un dedo.
+    </p>
+
+    <div class="benefits-list fade-up delay-3">
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
         </div>
-        <a href="#cta" class="btn btn-primary btn-sm" data-i18n="navCTA">Get Started</a>
+        <p class="benefit-text"><strong>Responde en menos de 1 minuto</strong> — antes que tu competencia</p>
       </div>
-
-      <button class="menu-toggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <p class="benefit-text"><strong>Agenda citas automáticamente</strong> — directo en tu calendario</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <p class="benefit-text"><strong>Reduce costos operativos</strong> — sin contratar más personal</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <p class="benefit-text"><strong>Funciona en WhatsApp, web y llamadas</strong> — todos tus canales</p>
+      </div>
     </div>
-  </header>
 
-  <!-- Mobile Nav -->
-  <div class="mobile-nav">
-    <button class="mobile-nav-close">&times;</button>
-    <a href="#cta" data-i18n="navBook">Agendar</a>
-    <div class="lang-toggle" style="margin-top:16px">
-      <button data-lang="en">EN</button>
-      <button data-lang="es">ES</button>
+    <div class="hero-actions fade-up delay-4">
+      <a href="#form" class="btn-primary">
+        Hablar con el agente →
+      </a>
+      <a href="#demo" class="btn-secondary">
+        Ver demo
+      </a>
     </div>
-    <a href="#cta" class="btn btn-primary" data-i18n="navCTA">Get Started</a>
   </div>
 
-  <!-- ========== HERO ========== -->
-  <section class="hero">
-    <div class="container">
-      <!-- LEFT: Phone Mockup -->
-      <div class="hero-visual">
-        <div class="hero-phone">
-          <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="phone-header">
-                <div class="phone-avatar">⚔️</div>
-                <div class="phone-name" data-i18n="phoneName">Sword AI Agent</div>
-                <div class="phone-status" data-i18n="phoneStatus">Active Call</div>
-              </div>
-              <div class="call-animation">
-                <div class="wave-bars">
-                  <div class="wave-bar"></div>
-                  <div class="wave-bar"></div>
-                  <div class="wave-bar"></div>
-                  <div class="wave-bar"></div>
-                  <div class="wave-bar"></div>
-                  <div class="wave-bar"></div>
-                  <div class="wave-bar"></div>
-                  <div class="wave-bar"></div>
-                </div>
-                <div class="call-timer" id="call-timer">02:47</div>
-                <div class="call-status-text" data-i18n="phoneCallStatus">Booking appointment...</div>
-              </div>
-              <div class="phone-actions">
-                <button class="phone-action-btn mute">🔇</button>
-                <button class="phone-action-btn end">📞</button>
-                <button class="phone-action-btn speaker">🔊</button>
-              </div>
-            </div>
+  <!-- FORM CARD -->
+  <div class="hero-right fade-up delay-2" id="form">
+    <div class="form-card">
+      <div class="form-card-label">Prueba gratuita</div>
+      <h3>Testea el agente ahora</h3>
+      <p>Déjanos tus datos y nuestro agente te llama en menos de 2 minutos.</p>
+
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre *</label>
+            <input type="text" placeholder="Tu nombre" required>
           </div>
-
-          <!-- Floating cards -->
-          <div class="float-card card-1" data-i18n="float1">✅ Appointment Booked</div>
-          <div class="float-card card-2" data-i18n="float2">📞 1,847 Calls Today</div>
-          <div class="float-card card-3" data-i18n="float3">📈 32% Conversion</div>
-        </div>
-      </div>
-
-      <!-- RIGHT: GHL inline form -->
-      <div class="hero-form">
-        <iframe
-          src="https://api.leadconnectorhq.com/widget/form/1aPVDT6qlfcpEu4zhfgW"
-          style="width:100%;height:100%;border:none;border-radius:8px"
-          id="inline-1aPVDT6qlfcpEu4zhfgW"
-          data-layout="{'id':'INLINE'}"
-          data-trigger-type="alwaysShow"
-          data-trigger-value=""
-          data-activation-type="alwaysActivated"
-          data-activation-value=""
-          data-deactivation-type="neverDeactivate"
-          data-deactivation-value=""
-          data-form-name="Form de landing"
-          data-height="920"
-          data-layout-iframe-id="inline-1aPVDT6qlfcpEu4zhfgW"
-          data-form-id="1aPVDT6qlfcpEu4zhfgW"
-          title="Form de landing"
-        ></iframe>
-        <script src="https://link.msgsndr.com/js/form_embed.js"></script>
-      </div>
-    </div>
-  </section>
-
-  <!-- Schedule-appointment CTA between hero and calendar -->
-  <section class="hero-schedule">
-    <div class="container">
-      <p class="hero-schedule-label" data-i18n="heroScheduleLabel">¿Prefieres agendar una reunión?</p>
-      <a href="#cta" class="btn btn-primary btn-arrow" data-i18n="heroScheduleBtn">Agendar Cita en el Calendario</a>
-    </div>
-  </section>
-
-
-  <!-- ========== CTA / BOOKING ========== -->
-  <section class="cta" id="cta">
-    <div class="container">
-      <div class="cta-box reveal">
-        <div class="cta-content">
-          <h2>
-            <span data-i18n="ctaTitle">Ready to Build Your First </span>
-            <span class="gradient-text" data-i18n="ctaTitleGrad">AI Voice Agent?</span>
-          </h2>
-          <p data-i18n="ctaSubtitle">Book a free 30-minute growth session with our team and see Sword AI in action.</p>
-        </div>
-        <div class="calendly-wrapper">
-          <iframe src="https://api.leadconnectorhq.com/widget/booking/AUaIRFJ1MXYziUTazC1E" style="width: 100%;min-height:700px;border:none;overflow: hidden;" scrolling="no" id="AUaIRFJ1MXYziUTazC1E_1777328051593"></iframe>
-          <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="logo">
-            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="logoGrad2" x1="0" y1="0" x2="36" y2="36">
-                  <stop offset="0%" stop-color="#888"/>
-                  <stop offset="100%" stop-color="#DDD"/>
-                </linearGradient>
-              </defs>
-              <rect width="36" height="36" rx="8" fill="url(#logoGrad2)"/>
-              <path d="M18 6L12 18L18 15L24 18L18 6Z" fill="#0A0A0A" opacity="0.9"/>
-              <path d="M18 15L12 18L18 30L24 18L18 15Z" fill="#0A0A0A" opacity="0.6"/>
-            </svg>
-            Sword <span class="gradient-text">AI</span>
-          </a>
-          <p data-i18n="footerDesc">The no-code platform to build, deploy, and scale AI voice agents and chatbots for sales, support, and automation.</p>
-          <div class="social-links">
-            <a href="#" class="social-link" aria-label="Instagram">📷</a>
-            <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
-            <a href="#" class="social-link" aria-label="LinkedIn">in</a>
-            <a href="#" class="social-link" aria-label="YouTube">▶</a>
+          <div class="form-group">
+            <label>Apellido *</label>
+            <input type="text" placeholder="Tu apellido" required>
           </div>
         </div>
 
-        <div class="footer-col">
-          <h4 data-i18n="footerProduct">Product</h4>
-          <a href="#pricing" data-i18n="footerPricing">Planes</a>
-          <a href="#agents" data-i18n="footerVoiceAgents">Voice Agents</a>
-          <a href="#agents" data-i18n="footerChatbots">Chatbots</a>
-          <a href="#integrations" data-i18n="footerIntegrations">Integrations</a>
-          <a href="#" data-i18n="footerAPI">API & Webhooks</a>
+        <div class="form-group">
+          <label>Teléfono / WhatsApp *</label>
+          <input type="tel" placeholder="+1 (555) 000-0000" required>
         </div>
 
-        <div class="footer-col">
-          <h4 data-i18n="footerCompany">Company</h4>
-          <a href="#" data-i18n="footerAbout">About Us</a>
-          <a href="#" data-i18n="footerCareers">Careers</a>
-          <a href="#" data-i18n="footerBlog">Blog</a>
-          <a href="#" data-i18n="footerContact">Contact</a>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" placeholder="tu@empresa.com" required>
         </div>
 
-        <div class="footer-col">
-          <h4 data-i18n="footerLegal">Legal</h4>
-          <a href="#" data-i18n="footerTerms">Terms of Service</a>
-          <a href="#" data-i18n="footerPrivacy">Privacy Policy</a>
-          <a href="#" data-i18n="footerHIPAA">HIPAA Compliance</a>
+        <div class="form-group">
+          <label>Tipo de negocio</label>
+          <select>
+            <option value="">Selecciona tu industria</option>
+            <option>Agencia de marketing</option>
+            <option>Bienes raíces</option>
+            <option>Salud y medicina</option>
+            <option>E-commerce</option>
+            <option>Educación</option>
+            <option>Servicios financieros</option>
+            <option>Otro</option>
+          </select>
         </div>
-      </div>
 
-      <div class="footer-bottom">
-        <span data-i18n="footerCopyright">© 2025 Sword AI. All rights reserved.</span>
-        <div class="lang-toggle">
-          <button data-lang="en">EN</button>
-          <button data-lang="es">ES</button>
-        </div>
-      </div>
+        <button type="submit" class="form-submit">
+          ¡Llámame ahora!
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </button>
+      </form>
+
+      <p class="form-privacy">🔒 Tus datos están seguros. No spam, nunca.</p>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="script.js?v=8"></script>
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">
+    <div class="footer-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#070a09" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5"/>
+        <path d="M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    <span>Sword <em>AI</em></span>
+  </a>
+
+  <ul class="footer-links">
+    <li><a href="#">Términos y condiciones</a></li>
+    <li><a href="#">Política de privacidad</a></li>
+    <li><a href="#">Instagram</a></li>
+  </ul>
+
+  <p class="footer-copy">© 2025 Sword AI Solutions. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ ¡Enviado! Te llamamos pronto.';
+  btn.style.background = '#00c265';
+  btn.disabled = true;
+}
+</script>
+
 </body>
 </html>
