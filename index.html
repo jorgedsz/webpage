@@ -965,6 +965,11 @@
         </div>
 
         <div class="form-group">
+          <label>Saludo Inicial *</label>
+          <input type="text" id="greeting" placeholder='Ej: "Hola, soy Ana de Sword AI, ¿cómo estás?"' required>
+        </div>
+
+        <div class="form-group">
           <label>Instrucciones / Script *</label>
           <textarea id="script" rows="4" placeholder="Describe el rol, objetivo y tono de tu agente..." required style="resize:vertical;"></textarea>
           <p style="font-size:11px; color:#3d5047; margin-top:6px; line-height:1.5;">Cuéntale a tu agente quién es, qué hace y cómo debe hablar. Mientras más detalle le des, mejor será la conversación.</p>
@@ -1034,6 +1039,7 @@ async function handleSubmit(e) {
     lastName: document.getElementById('lastName').value,
     email: document.getElementById('email').value,
     phone: document.getElementById('phone').value,
+    greeting: document.getElementById('greeting').value,
     script: document.getElementById('script').value,
     voice: document.getElementById('voice').value,
   };
@@ -1060,30 +1066,6 @@ async function handleSubmit(e) {
     errorDiv.style.display = 'block';
   }
 }
-
-function openCalModal(e) {
-  if (e) e.preventDefault();
-  const m = document.getElementById('cal-modal');
-  m.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeCalModal() {
-  document.getElementById('cal-modal').style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const cal = document.getElementById('cal-modal');
-  if (cal) {
-    cal.addEventListener('click', (e) => {
-      if (e.target.id === 'cal-modal') closeCalModal();
-    });
-  }
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeCalModal();
-  });
-});
 </script>
 
 
