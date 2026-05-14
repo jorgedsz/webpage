@@ -961,7 +961,19 @@
 
         <div class="form-group">
           <label>Phone *</label>
-          <input type="tel" id="phone" placeholder="+1 (555) 000-0000" required>
+          <div style="display:flex; gap:8px; position:relative;">
+            <div id="country-picker" style="position:relative; flex-shrink:0;">
+              <div id="country-selected" onclick="toggleCountryDropdown()" style="display:flex; align-items:center; gap:6px; background:var(--bg3); border:1px solid var(--border-dim); border-radius:8px; padding:12px 10px; cursor:pointer; min-width:100px; user-select:none; transition:border-color 0.2s;">
+                <img id="country-flag" src="https://flagcdn.com/w20/co.png" width="20" style="border-radius:2px;">
+                <span id="country-code-display" style="color:var(--text); font-size:14px;">+57</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7a9088" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+              <div id="country-dropdown" style="display:none; position:absolute; top:calc(100% + 4px); left:0; background:#1a2b22; border:1px solid rgba(0,200,150,0.2); border-radius:10px; z-index:999; min-width:200px; max-height:260px; overflow-y:auto; box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+              </div>
+            </div>
+            <input type="tel" id="phone" placeholder="300 123 4567" required style="flex:1;">
+            <input type="hidden" id="countryCode" value="+57">
+          </div>
         </div>
 
         <div class="form-group">
@@ -1038,7 +1050,7 @@ async function handleSubmit(e) {
     firstName: document.getElementById('firstName').value,
     lastName: document.getElementById('lastName').value,
     email: document.getElementById('email').value,
-    phone: document.getElementById('phone').value,
+    phone: document.getElementById('countryCode').value + document.getElementById('phone').value,
     greeting: document.getElementById('greeting').value,
     script: document.getElementById('script').value,
     voice: document.getElementById('voice').value,
@@ -1097,5 +1109,65 @@ document.getElementById('cal-modal').addEventListener('click', function(e) {
   if (e.target === this) closeCalModal();
 });
 </script>
+
+<script>
+const COUNTRIES = [
+  { code: 'co', dial: '+57', name: 'Colombia' },
+  { code: 'us', dial: '+1', name: 'Estados Unidos' },
+  { code: 'mx', dial: '+52', name: 'México' },
+  { code: 'ar', dial: '+54', name: 'Argentina' },
+  { code: 'cl', dial: '+56', name: 'Chile' },
+  { code: 'pe', dial: '+51', name: 'Perú' },
+  { code: 've', dial: '+58', name: 'Venezuela' },
+  { code: 'ec', dial: '+593', name: 'Ecuador' },
+  { code: 'gt', dial: '+502', name: 'Guatemala' },
+  { code: 'sv', dial: '+503', name: 'El Salvador' },
+  { code: 'hn', dial: '+504', name: 'Honduras' },
+  { code: 'ni', dial: '+505', name: 'Nicaragua' },
+  { code: 'cr', dial: '+506', name: 'Costa Rica' },
+  { code: 'pa', dial: '+507', name: 'Panamá' },
+  { code: 'cu', dial: '+53', name: 'Cuba' },
+  { code: 'do', dial: '+1809', name: 'Rep. Dominicana' },
+  { code: 'es', dial: '+34', name: 'España' },
+  { code: 'br', dial: '+55', name: 'Brasil' },
+  { code: 'gb', dial: '+44', name: 'Reino Unido' },
+  { code: 'de', dial: '+49', name: 'Alemania' },
+  { code: 'fr', dial: '+33', name: 'Francia' },
+];
+
+const dropdown = document.getElementById('country-dropdown');
+
+COUNTRIES.forEach(c => {
+  const item = document.createElement('div');
+  item.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background 0.15s;';
+  item.innerHTML = '<img src="https://flagcdn.com/w20/' + c.code + '.png" width="20" style="border-radius:2px;flex-shrink:0;"><span style="color:#f0f5f2;font-size:13px;">' + c.name + '</span><span style="color:#7a9088;font-size:13px;margin-left:auto;">' + c.dial + '</span>';
+  item.onmouseenter = () => item.style.background = 'rgba(0,200,150,0.08)';
+  item.onmouseleave = () => item.style.background = 'transparent';
+  item.onclick = () => selectCountry(c);
+  dropdown.appendChild(item);
+});
+
+function selectCountry(c) {
+  document.getElementById('country-flag').src = 'https://flagcdn.com/w20/' + c.code + '.png';
+  document.getElementById('country-code-display').textContent = c.dial;
+  document.getElementById('countryCode').value = c.dial;
+  toggleCountryDropdown(false);
+}
+
+function toggleCountryDropdown(force) {
+  const dd = document.getElementById('country-dropdown');
+  const isOpen = dd.style.display === 'block';
+  const shouldOpen = force !== undefined ? force : !isOpen;
+  dd.style.display = shouldOpen ? 'block' : 'none';
+  document.getElementById('country-selected').style.borderColor = shouldOpen ? 'rgba(0,200,150,0.4)' : '';
+}
+
+document.addEventListener('click', function(e) {
+  if (!document.getElementById('country-picker').contains(e.target)) {
+    toggleCountryDropdown(false);
+  }
+});
+</script>
+
 </body>
 </html>
