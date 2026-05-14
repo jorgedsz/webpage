@@ -989,13 +989,15 @@
 
         <div class="form-group">
           <label>Escoge Alguna De Nuestras Voces *</label>
-          <select id="voice" required>
-            <option value="">Selecciona una voz</option>
-            <option value="voz-masculina-1">Voz Masculina — Carlos</option>
-            <option value="voz-masculina-2">Voz Masculina — Andrés</option>
-            <option value="voz-femenina-1">Voz Femenina — Sofía</option>
-            <option value="voz-femenina-2">Voz Femenina — Valentina</option>
-          </select>
+          <input type="hidden" id="voice">
+          <div id="voice-picker" style="position:relative;">
+            <div id="voice-selected" onclick="toggleVoiceDropdown()" style="display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border:1px solid var(--border-dim);border-radius:8px;padding:12px 14px;cursor:pointer;user-select:none;transition:border-color 0.2s;">
+              <span id="voice-label" style="color:#3d5047;font-size:14px;">Selecciona una voz</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7a9088" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div id="voice-dropdown" style="display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;background:#1a2b22;border:1px solid rgba(0,200,150,0.2);border-radius:10px;z-index:999;max-height:280px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+            </div>
+          </div>
         </div>
 
         <div id="form-error" style="display:none; color:#ff4d4d; font-size:13px; margin-bottom:10px;"></div>
@@ -1172,28 +1174,90 @@ document.addEventListener('click', function(e) {
 
 <script>
 const VOICES = [
-  { country: '🇨🇴 Colombiana', options: [{ value: 'lina', label: 'Lina' }, { value: 'cristian', label: 'Cristian' }] },
-  { country: '🇻🇪 Venezolana', options: [{ value: 'paul', label: 'Paul' }, { value: 'ligia', label: 'Ligia' }] },
-  { country: '🇦🇷 Argentina', options: [{ value: 'malena', label: 'Malena' }, { value: 'agustin', label: 'Agustín' }] },
-  { country: '🇲🇽 Mexicana', options: [{ value: 'camila', label: 'Camila' }, { value: 'enrique', label: 'Enrique' }] },
-  { country: '🇩🇴 Dominicana', options: [{ value: 'diana', label: 'Diana' }, { value: 'tony', label: 'Tony' }] },
+  { country: '🇨🇴 Colombiana', options: [
+    { value: 'lina', label: 'Lina', audio: 'https://drive.google.com/uc?export=download&id=15Jq70t83qwbaCaQXl4TQC_JdlgEDlrw9' },
+    { value: 'cristian', label: 'Cristian', audio: 'https://drive.google.com/uc?export=download&id=1uldsiw4SvL4LEC-ZXWxDc2JL_IbrQtIF' }
+  ]},
+  { country: '🇻🇪 Venezolana', options: [
+    { value: 'paul', label: 'Paul', audio: 'https://drive.google.com/uc?export=download&id=16tpQTbmv5PUNdvtqceKOhYTy55sko1dG' },
+    { value: 'ligia', label: 'Ligia', audio: 'https://drive.google.com/uc?export=download&id=1MlsJ9UQSXyH4IwbLMM7bNg4MPVKEeHrp' }
+  ]},
+  { country: '🇦🇷 Argentina', options: [
+    { value: 'malena', label: 'Malena', audio: 'https://drive.google.com/uc?export=download&id=16TryUlQVNiD7qIvOLyehf7h8bkeTq2Eu' },
+    { value: 'agustin', label: 'Agustín', audio: 'https://drive.google.com/uc?export=download&id=17UMBCLxmbJEoE0eyGxC-O-0HUVrMeHy7' }
+  ]},
+  { country: '🇲🇽 Mexicana', options: [
+    { value: 'camila', label: 'Camila', audio: 'https://drive.google.com/uc?export=download&id=14paQRzcTbX4s9guOr86r8xnNQq4CEOJY' },
+    { value: 'enrique', label: 'Enrique', audio: 'https://drive.google.com/uc?export=download&id=1bIExG_rmRmqIQucH1qT12ea3AK-PEYdb' }
+  ]},
+  { country: '🇩🇴 Dominicana', options: [
+    { value: 'diana', label: 'Diana', audio: null },
+    { value: 'tony', label: 'Tony', audio: null }
+  ]},
 ];
+
+let currentAudio = null;
 
 const voiceDropdown = document.getElementById('voice-dropdown');
 
 VOICES.forEach(group => {
   const header = document.createElement('div');
-  header.style.cssText = 'padding:8px 14px 4px;font-size:11px;font-weight:600;color:#7a9088;letter-spacing:0.5px;text-transform:uppercase;';
+  header.style.cssText = 'padding:8px 14px 4px;font-size:11px;font-weight:600;color:#7a9088;letter-spacing:0.5px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,0.04);margin-top:4px;';
   header.textContent = group.country;
   voiceDropdown.appendChild(header);
 
   group.options.forEach(opt => {
     const item = document.createElement('div');
-    item.style.cssText = 'padding:10px 14px 10px 20px;cursor:pointer;color:#f0f5f2;font-size:14px;transition:background 0.15s;';
-    item.textContent = opt.label;
-    item.onmouseenter = () => item.style.background = 'rgba(0,200,150,0.08)';
+    item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:10px 14px 10px 20px;cursor:pointer;transition:background 0.15s;';
+
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = opt.label;
+    nameSpan.style.cssText = 'color:#f0f5f2;font-size:14px;flex:1;';
+    item.appendChild(nameSpan);
+
+    if (opt.audio) {
+      const playBtn = document.createElement('button');
+      playBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+      playBtn.style.cssText = 'background:rgba(0,200,150,0.12);border:1px solid rgba(0,200,150,0.25);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#00c896;flex-shrink:0;transition:all 0.2s;padding:0;';
+      playBtn.title = 'Escuchar preview';
+
+      playBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+          document.querySelectorAll('.play-btn-active').forEach(b => {
+            b.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+            b.classList.remove('play-btn-active');
+            b.style.background = 'rgba(0,200,150,0.12)';
+          });
+          if (currentAudio.src.includes(opt.audio.split('id=')[1])) {
+            currentAudio = null;
+            return;
+          }
+        }
+        const audio = new Audio(opt.audio);
+        currentAudio = audio;
+        playBtn.innerHTML = '<svg width="10" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+        playBtn.classList.add('play-btn-active');
+        playBtn.style.background = 'rgba(0,200,150,0.25)';
+        audio.play();
+        audio.onended = () => {
+          playBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+          playBtn.classList.remove('play-btn-active');
+          playBtn.style.background = 'rgba(0,200,150,0.12)';
+          currentAudio = null;
+        };
+      };
+      item.appendChild(playBtn);
+    }
+
+    item.onmouseenter = () => item.style.background = 'rgba(0,200,150,0.06)';
     item.onmouseleave = () => item.style.background = 'transparent';
-    item.onclick = () => selectVoice(opt.value, opt.label + ' — ' + group.country);
+    item.onclick = (e) => {
+      if (e.target.closest('button')) return;
+      selectVoice(opt.value, opt.label + ' — ' + group.country);
+    };
     voiceDropdown.appendChild(item);
   });
 });
