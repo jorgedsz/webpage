@@ -1054,6 +1054,13 @@ src="https://www.facebook.com/tr?id=1673877870313180&ev=PageView&noscript=1"
 </footer>
 
 <script>
+// Read a single cookie by name. Used to forward Meta's _fbp and _fbc to the
+// server-side CAPI flow so it can match the conversion with the ad click.
+function getCookie(name) {
+  const m = document.cookie.match(new RegExp('(^|;\\s*)' + name + '=([^;]*)'));
+  return m ? decodeURIComponent(m[2]) : null;
+}
+
 async function handleSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('submit-btn');
@@ -1064,6 +1071,11 @@ async function handleSubmit(e) {
   btn.disabled = true;
   btn.style.opacity = '0.7';
 
+  // One ID shared between the browser Pixel fire and the n8n→Meta CAPI call.
+  // Meta uses it to dedupe so the same Lead doesn't count twice.
+  const eventId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+  const eventTime = Math.floor(Date.now() / 1000);
+
   const payload = {
     firstName: document.getElementById('firstName').value,
     lastName: document.getElementById('lastName').value,
@@ -1072,6 +1084,15 @@ async function handleSubmit(e) {
     greeting: document.getElementById('greeting').value,
     script: document.getElementById('script').value,
     voice: document.getElementById('voice').value,
+    // Meta CAPI metadata — n8n forwards these to graph.facebook.com:
+    meta: {
+      eventId,
+      eventTime,
+      eventSourceUrl: window.location.href,
+      fbp: getCookie('_fbp'),
+      fbc: getCookie('_fbc'),
+      userAgent: navigator.userAgent
+    }
   };
 
   try {
@@ -1086,10 +1107,11 @@ async function handleSubmit(e) {
       btn.style.background = '#00a87d';
       btn.style.opacity = '1';
       if (typeof fbq === 'function') {
+        // Passing the same eventID here is what unlocks the browser+server dedup.
         fbq('track', 'Lead', {
           content_name: 'AI Voice Agent Trial',
           content_category: 'Form Submit'
-        });
+        }, { eventID: eventId });
       }
     } else {
       throw new Error('Error del servidor');
