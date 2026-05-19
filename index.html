@@ -1087,6 +1087,17 @@ async function handleSubmit(e) {
   const errorDiv = document.getElementById('form-error');
   errorDiv.style.display = 'none';
 
+  // No hay required en el hidden input — validar a mano para no enviar
+  // submits con voice vacío (es el campo que más se olvidan de elegir).
+  const voiceValue = document.getElementById('voice').value;
+  if (!voiceValue) {
+    errorDiv.textContent = 'Por favor selecciona una voz antes de continuar.';
+    errorDiv.style.display = 'block';
+    document.getElementById('voice-selected').style.borderColor = '#ff4d4d';
+    document.getElementById('voice-selected').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
   btn.textContent = 'Enviando...';
   btn.disabled = true;
   btn.style.opacity = '0.7';
@@ -1287,6 +1298,9 @@ VOICES.forEach(group => {
 
       playBtn.onclick = (e) => {
         e.stopPropagation();
+        // Reproducir un preview también selecciona la voz — la mayoría de la
+        // gente toca Play pensando que con eso queda elegida y manda el form.
+        selectVoice(opt.value, opt.label + ' — ' + group.country);
         if (currentAudio) {
           const wasSame = currentAudio._voiceKey === opt.value;
           currentAudio.pause();
