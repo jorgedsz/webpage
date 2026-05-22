@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sword AI Solutions — Agente de IA que vende por ti</title>
+
+<!-- SEO -->
+<meta name="description" content="Sword AI Solutions: agente de IA que automatiza tus ventas y atención al cliente 24/7 para empresas en Colombia. Agenda una demo hoy.">
+<meta name="keywords" content="agente IA, inteligencia artificial ventas, chatbot Colombia, automatización atención cliente">
+<link rel="canonical" href="https://swordaisolutions.com/">
+
+<!-- Open Graph (Facebook, WhatsApp, LinkedIn previews) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://swordaisolutions.com/">
+<meta property="og:title" content="Sword AI Solutions | Agente de IA para Ventas y Atención">
+<meta property="og:description" content="Automatiza tus ventas y atención al cliente con IA. Sword AI Solutions.">
+<meta property="og:locale" content="es_CO">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sword AI Solutions | Agente de IA para Ventas y Atención">
+<meta name="twitter:description" content="Automatiza tus ventas y atención al cliente con IA. Sword AI Solutions.">
+
+<!-- Theme -->
+<meta name="theme-color" content="#00c896">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1673877870313180');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1673877870313180&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #00c896;
+    --green-dim: #00a87d;
+    --green-glow: rgba(0,200,150,0.15);
+    --green-subtle: rgba(0,200,150,0.07);
+    --bg: #0e1612;
+    --bg2: #152019;
+    --bg3: #1a2b22;
+    --text: #f0f5f2;
+    --muted: #7a9088;
+    --border: rgba(0,200,150,0.12);
+    --border-dim: rgba(255,255,255,0.06);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; line-height: 1.15; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    height: 68px;
+    background: rgba(7,10,9,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--green);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-logo-icon svg { width: 20px; height: 20px; }
+
+  .nav-logo span {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  .nav-logo span em {
+    font-style: normal;
+    color: var(--green);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--green);
+    color: #070a09;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .nav-cta:hover { background: var(--green-dim); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: 120px 10% 80px;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -100px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(0,200,150,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-subtle);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green);
+    letter-spacing: 0.5px;
+    margin-bottom: 28px;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-headline {
+    font-size: clamp(26px, 3.2vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .hero-headline .accent { color: var(--green); }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 40px;
+    max-width: 460px;
+    line-height: 1.7;
+  }
+
+  .benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 44px;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .benefit-icon {
+    width: 22px;
+    height: 22px;
+    background: var(--green-subtle);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .benefit-icon svg { width: 11px; height: 11px; stroke: var(--green); }
+
+  .benefit-text { font-size: 15px; color: var(--muted); }
+  .benefit-text strong { color: var(--text); font-weight: 500; }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: #070a09;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--green-dim); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-dim);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--border); color: var(--green); }
+
+  /* HERO RIGHT — FORM CARD */
+  .hero-right {
+    position: relative;
+  }
+
+  .form-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px;
+    position: relative;
+  }
+
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+  }
+
+  .form-card-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .form-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .form-card p {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border-dim);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--green);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: #3d5047; }
+
+  .form-group select { appearance: none; cursor: pointer; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 12px;
+  }
+
+  .form-submit {
+    width: 100%;
+    background: var(--green);
+    color: #070a09;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .form-submit:hover { background: var(--green-dim); transform: translateY(-1px); }
+
+  .form-privacy {
+    text-align: center;
+    font-size: 11px;
+    color: #3d5047;
+    margin-top: 12px;
+  }
+
+  /* LOGOS */
+  .logos-section {
+    padding: 60px 5%;
+    border-top: 1px solid var(--border-dim);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .logos-label {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #3d5047;
+    margin-bottom: 32px;
+  }
+
+  .logos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 32px;
+    align-items: center;
+  }
+
+  .logo-pill {
+    background: var(--bg2);
+    border: 1px solid var(--border-dim);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #3d5047;
+    letter-spacing: 0.5px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .logo-pill:hover { border-color: var(--border); color: var(--muted); }
+
+  /* HOW IT WORKS */
+  .how-section {
+    padding: 100px 5%;
+    position: relative;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 520px;
+    margin: 0 auto 64px;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .step-card {
+    background: var(--bg2);
+    border: 1px solid var(--border-dim);
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .step-card:hover { border-color: var(--border); }
+
+  .step-number {
+    font-family: 'Outfit', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    color: rgba(0,200,150,0.08);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--green-subtle);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .step-icon svg { width: 20px; height: 20px; stroke: var(--green); }
+
+  .step-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .step-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* DEMO PLAYER */
+  .demo-section {
+    padding: 100px 5%;
+    background: var(--bg2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .demo-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,200,150,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .demo-player {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    position: relative;
+  }
+
+  .demo-wave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 60px;
+    margin: 24px 0;
+  }
+
+  .demo-wave span {
+    display: block;
+    width: 4px;
+    background: var(--green);
+    border-radius: 4px;
+    animation: wave 1.4s ease-in-out infinite;
+  }
+
+  .demo-wave span:nth-child(1) { height: 20px; animation-delay: 0s; }
+  .demo-wave span:nth-child(2) { height: 35px; animation-delay: 0.1s; }
+  .demo-wave span:nth-child(3) { height: 50px; animation-delay: 0.2s; }
+  .demo-wave span:nth-child(4) { height: 40px; animation-delay: 0.3s; }
+  .demo-wave span:nth-child(5) { height: 55px; animation-delay: 0.4s; }
+  .demo-wave span:nth-child(6) { height: 30px; animation-delay: 0.5s; }
+  .demo-wave span:nth-child(7) { height: 45px; animation-delay: 0.6s; }
+  .demo-wave span:nth-child(8) { height: 20px; animation-delay: 0.7s; }
+  .demo-wave span:nth-child(9) { height: 35px; animation-delay: 0.6s; }
+  .demo-wave span:nth-child(10) { height: 25px; animation-delay: 0.5s; }
+  .demo-wave span:nth-child(11) { height: 45px; animation-delay: 0.4s; }
+  .demo-wave span:nth-child(12) { height: 50px; animation-delay: 0.3s; }
+  .demo-wave span:nth-child(13) { height: 30px; animation-delay: 0.2s; }
+  .demo-wave span:nth-child(14) { height: 20px; animation-delay: 0.1s; }
+
+  @keyframes wave {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+
+  .demo-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .demo-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .demo-tag {
+    display: inline-block;
+    background: var(--green-subtle);
+    border: 1px solid var(--border);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+  }
+
+  /* STATS */
+  .stats-section {
+    padding: 100px 5%;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-dim);
+    border: 1px solid var(--border-dim);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 60px;
+  }
+
+  .stat-block {
+    background: var(--bg);
+    padding: 48px 40px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Outfit', sans-serif;
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* CTA FINAL */
+  .cta-section {
+    padding: 100px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,232,122,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .cta-section p {
+    color: var(--muted);
+    font-size: 17px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--green);
+    border: 1px solid var(--border);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover { background: var(--green-subtle); }
+
+  .team-avatars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg3);
+    border: 2px solid var(--bg);
+    margin-left: -12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--green);
+  }
+
+  .avatar:first-child { margin-left: 0; }
+  .avatar.av1 { background: #0d2218; }
+  .avatar.av2 { background: #122b1f; }
+  .avatar.av3 { background: #0a1c13; }
+  .avatar.av4 { background: #162e22; }
+
+  .team-caption {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border-dim);
+    padding: 40px 5%;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .footer-logo-icon {
+    width: 30px;
+    height: 30px;
+    background: var(--green);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-logo-icon svg { width: 16px; height: 16px; }
+
+  .footer-logo span {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text);
+  }
+
+  .footer-logo span em { font-style: normal; color: var(--green); }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-copy {
+    font-size: 12px;
+    color: #3d5047;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+      grid-template-columns: 1fr;
+      padding-top: 100px;
+    }
+
+    .steps-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; }
+
+    .nav-links { display: none; }
+
+    .form-row { grid-template-columns: 1fr; }
+
+    footer {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-links { justify-content: center; }
+  }
+
+  /* FADE IN ANIMATION */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.35s; }
+  .delay-4 { animation-delay: 0.5s; }
+
+  .container { max-width: 960px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<div class="container">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#070a09" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5"/>
+        <path d="M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    <span>Sword <em>AI</em></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#como-funciona">Cómo funciona</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#agendar">Contacto</a></li>
+  </ul>
+
+  <a href="#form" class="nav-cta">Probar ahora →</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="badge fade-up">
+      <span class="badge-dot"></span>
+      Agente de IA disponible 24/7
+    </div>
+
+    <h1 class="hero-headline fade-up delay-1">
+      Tu agente de IA que <span class="accent">vende y agenda</span> sin parar
+    </h1>
+
+    <p class="hero-sub fade-up delay-2">
+      Sword AI responde leads en segundos, agenda citas automáticamente y cierra ventas — sin que tu equipo levante un dedo.
+    </p>
+
+    <div class="benefits-list fade-up delay-3">
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <p class="benefit-text"><strong>Responde en menos de 1 minuto</strong> — antes que tu competencia</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <p class="benefit-text"><strong>Agenda citas automáticamente</strong> — directo en tu calendario</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <p class="benefit-text"><strong>Reduce costos operativos</strong> — sin contratar más personal</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <p class="benefit-text"><strong>Funciona en WhatsApp, web y llamadas</strong> — todos tus canales</p>
+      </div>
+    </div>
+
+    <div class="hero-actions fade-up delay-4">
+      <a href="#" onclick="openCalModal(event)" class="btn-primary">
+        Agendar una cita →
+      </a>
+      <a href="#demo" class="btn-secondary">
+        Ver demo
+      </a>
+    </div>
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="hero-right fade-up delay-2" id="form">
+    <div class="form-card">
+      <div class="form-card-label">Prueba gratuita</div>
+      <h3>Testea el agente ahora</h3>
+      <p>Déjanos tus datos y nuestro agente te llama en menos de 2 minutos.</p>
+
+      <form onsubmit="handleSubmit(event)" id="main-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name *</label>
+            <input type="text" id="firstName" placeholder="First Name" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name *</label>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="email" placeholder="Email" required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone *</label>
+          <div style="display:flex; gap:8px; position:relative;">
+            <div id="country-picker" style="position:relative; flex-shrink:0;">
+              <div id="country-selected" onclick="toggleCountryDropdown()" style="display:flex; align-items:center; gap:6px; background:var(--bg3); border:1px solid var(--border-dim); border-radius:8px; padding:12px 10px; cursor:pointer; min-width:100px; user-select:none; transition:border-color 0.2s;">
+                <img id="country-flag" src="https://flagcdn.com/w20/co.png" width="20" style="border-radius:2px;">
+                <span id="country-code-display" style="color:var(--text); font-size:14px;">+57</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7a9088" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+              <div id="country-dropdown" style="display:none; position:absolute; top:calc(100% + 4px); left:0; background:#1a2b22; border:1px solid rgba(0,200,150,0.2); border-radius:10px; z-index:999; min-width:200px; max-height:260px; overflow-y:auto; box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+              </div>
+            </div>
+            <input type="tel" id="phone" placeholder="300 123 4567" required style="flex:1;">
+            <input type="hidden" id="countryCode" value="+57">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Saludo Inicial *</label>
+          <input type="text" id="greeting" placeholder='Ej: "Hola, soy Ana de Sword AI, ¿cómo estás?"' required>
+        </div>
+
+        <div class="form-group">
+          <label>Instrucciones / Script *</label>
+          <textarea id="script" rows="4" placeholder="Describe el rol, objetivo y tono de tu agente..." required style="resize:vertical;"></textarea>
+          <p style="font-size:11px; color:#3d5047; margin-top:6px; line-height:1.5;">Cuéntale a tu agente quién es, qué hace y cómo debe hablar. Mientras más detalle le des, mejor será la conversación.</p>
+        </div>
+
+        <div class="form-group">
+          <label>Escoge Alguna De Nuestras Voces *</label>
+          <input type="hidden" id="voice">
+          <div id="voice-picker" style="position:relative;">
+            <div id="voice-selected" onclick="toggleVoiceDropdown()" style="display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border:1px solid var(--border-dim);border-radius:8px;padding:12px 14px;cursor:pointer;user-select:none;transition:border-color 0.2s;">
+              <span id="voice-label" style="color:#3d5047;font-size:14px;">Selecciona una voz</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7a9088" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div id="voice-dropdown" style="display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;background:#1a2b22;border:1px solid rgba(0,200,150,0.2);border-radius:10px;z-index:999;max-height:280px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+            </div>
+          </div>
+        </div>
+
+        <div id="form-error" style="display:none; color:#ff4d4d; font-size:13px; margin-bottom:10px;"></div>
+
+        <button type="submit" class="form-submit" id="submit-btn">
+          ¡LLAMAME!
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </button>
+      </form>
+
+      <p class="form-privacy">🔒 Tus datos están seguros. No spam, nunca.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">
+    <div class="footer-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#070a09" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5"/>
+        <path d="M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    <span>Sword <em>AI</em></span>
+  </a>
+
+  <ul class="footer-links">
+    <li><a href="#">Términos y condiciones</a></li>
+    <li><a href="#">Política de privacidad</a></li>
+    <li><a href="#">Instagram</a></li>
+  </ul>
+
+  <p class="footer-copy">© 2025 Sword AI Solutions. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+// Read a single cookie by name. Used to forward Meta's _fbp and _fbc to the
+// server-side CAPI flow so it can match the conversion with the ad click.
+function getCookie(name) {
+  const m = document.cookie.match(new RegExp('(^|;\\s*)' + name + '=([^;]*)'));
+  return m ? decodeURIComponent(m[2]) : null;
+}
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const errorDiv = document.getElementById('form-error');
+  errorDiv.style.display = 'none';
+
+  // No hay required en el hidden input — validar a mano para no enviar
+  // submits con voice vacío (es el campo que más se olvidan de elegir).
+  const voiceValue = document.getElementById('voice').value;
+  if (!voiceValue) {
+    errorDiv.textContent = 'Por favor selecciona una voz antes de continuar.';
+    errorDiv.style.display = 'block';
+    document.getElementById('voice-selected').style.borderColor = '#ff4d4d';
+    document.getElementById('voice-selected').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+
+  // One ID shared between the browser Pixel fire and the n8n→Meta CAPI call.
+  // Meta uses it to dedupe so the same Lead doesn't count twice.
+  const eventId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+  const eventTime = Math.floor(Date.now() / 1000);
+
+  const payload = {
+    firstName: document.getElementById('firstName').value,
+    lastName: document.getElementById('lastName').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('countryCode').value + document.getElementById('phone').value,
+    greeting: document.getElementById('greeting').value,
+    script: document.getElementById('script').value,
+    voice: document.getElementById('voice').value,
+    // Meta CAPI metadata — n8n forwards these to graph.facebook.com:
+    meta: {
+      eventId,
+      eventTime,
+      eventSourceUrl: window.location.href,
+      fbp: getCookie('_fbp'),
+      fbc: getCookie('_fbc'),
+      userAgent: navigator.userAgent
+    }
+  };
+
+  try {
+    const res = await fetch('https://primary-production-b7ae.up.railway.app/webhook/a5026a28-3eb6-4b0b-8d40-03e27e573385', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (res.ok) {
+      btn.textContent = '✓ ¡Enviado! Te llamamos pronto.';
+      btn.style.background = '#00a87d';
+      btn.style.opacity = '1';
+      if (typeof fbq === 'function') {
+        // Passing the same eventID here is what unlocks the browser+server dedup.
+        fbq('track', 'Lead', {
+          content_name: 'AI Voice Agent Trial',
+          content_category: 'Form Submit'
+        }, { eventID: eventId });
+      }
+    } else {
+      throw new Error('Error del servidor');
+    }
+  } catch (err) {
+    btn.textContent = '¡LLAMAME!';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    errorDiv.textContent = 'Hubo un error al enviar. Intenta de nuevo.';
+    errorDiv.style.display = 'block';
+  }
+}
+</script>
+
+
+<!-- MODAL CALENDARIO -->
+<div id="cal-modal" style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.75); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
+  <div style="background:#152019; border:1px solid rgba(0,200,150,0.2); border-radius:20px; width:90%; max-width:620px; max-height:90vh; overflow:hidden; position:relative; display:flex; flex-direction:column;">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid rgba(255,255,255,0.06);">
+      <span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:16px; color:#f0f5f2;">Agenda tu cita</span>
+      <button onclick="closeCalModal()" style="background:none; border:none; cursor:pointer; color:#7a9088; font-size:22px; line-height:1; padding:0 4px;">&times;</button>
+    </div>
+    <div style="overflow-y:auto; padding:0; flex:1;">
+      <iframe src="https://api.leadconnectorhq.com/widget/booking/AUaIRFJ1MXYziUTazC1E" style="width:100%; min-height:600px; border:none;" scrolling="no" id="AUaIRFJ1MXYziUTazC1E_1779202111250"></iframe>
+    </div>
+  </div>
+</div>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+<script>
+function openCalModal(e) {
+  e.preventDefault();
+  var modal = document.getElementById('cal-modal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeCalModal() {
+  document.getElementById('cal-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.getElementById('cal-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeCalModal();
+});
+</script>
+
+<script>
+const COUNTRIES = [
+  { code: 'co', dial: '+57', name: 'Colombia' },
+  { code: 'us', dial: '+1', name: 'Estados Unidos' },
+  { code: 'mx', dial: '+52', name: 'México' },
+  { code: 'ar', dial: '+54', name: 'Argentina' },
+  { code: 'cl', dial: '+56', name: 'Chile' },
+  { code: 'pe', dial: '+51', name: 'Perú' },
+  { code: 've', dial: '+58', name: 'Venezuela' },
+  { code: 'ec', dial: '+593', name: 'Ecuador' },
+  { code: 'gt', dial: '+502', name: 'Guatemala' },
+  { code: 'sv', dial: '+503', name: 'El Salvador' },
+  { code: 'hn', dial: '+504', name: 'Honduras' },
+  { code: 'ni', dial: '+505', name: 'Nicaragua' },
+  { code: 'cr', dial: '+506', name: 'Costa Rica' },
+  { code: 'pa', dial: '+507', name: 'Panamá' },
+  { code: 'cu', dial: '+53', name: 'Cuba' },
+  { code: 'do', dial: '+1809', name: 'Rep. Dominicana' },
+  { code: 'es', dial: '+34', name: 'España' },
+  { code: 'br', dial: '+55', name: 'Brasil' },
+  { code: 'gb', dial: '+44', name: 'Reino Unido' },
+  { code: 'de', dial: '+49', name: 'Alemania' },
+  { code: 'fr', dial: '+33', name: 'Francia' },
+];
+
+const dropdown = document.getElementById('country-dropdown');
+
+COUNTRIES.forEach(c => {
+  const item = document.createElement('div');
+  item.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background 0.15s;';
+  item.innerHTML = '<img src="https://flagcdn.com/w20/' + c.code + '.png" width="20" style="border-radius:2px;flex-shrink:0;"><span style="color:#f0f5f2;font-size:13px;">' + c.name + '</span><span style="color:#7a9088;font-size:13px;margin-left:auto;">' + c.dial + '</span>';
+  item.onmouseenter = () => item.style.background = 'rgba(0,200,150,0.08)';
+  item.onmouseleave = () => item.style.background = 'transparent';
+  item.onclick = () => selectCountry(c);
+  dropdown.appendChild(item);
+});
+
+function selectCountry(c) {
+  document.getElementById('country-flag').src = 'https://flagcdn.com/w20/' + c.code + '.png';
+  document.getElementById('country-code-display').textContent = c.dial;
+  document.getElementById('countryCode').value = c.dial;
+  toggleCountryDropdown(false);
+}
+
+function toggleCountryDropdown(force) {
+  const dd = document.getElementById('country-dropdown');
+  const isOpen = dd.style.display === 'block';
+  const shouldOpen = force !== undefined ? force : !isOpen;
+  dd.style.display = shouldOpen ? 'block' : 'none';
+  document.getElementById('country-selected').style.borderColor = shouldOpen ? 'rgba(0,200,150,0.4)' : '';
+}
+
+document.addEventListener('click', function(e) {
+  if (!document.getElementById('country-picker').contains(e.target)) {
+    toggleCountryDropdown(false);
+  }
+});
+</script>
+
+
+<script>
+const VOICES = [
+  { country: '🇨🇴 Colombiana', options: [
+    { value: 'lina', label: 'Lina', audio: 'audio/voice_preview_lina%20-%20sunny%2C%20kind%20and%20friendly%20(1).mp3' },
+    { value: 'cristian', label: 'Cristian', audio: 'audio/voice_preview_cristian%20sanchez%20-%20lively%20and%20deep%20(1).mp3' }
+  ]},
+  { country: '🇻🇪 Venezolana', options: [
+    { value: 'paul', label: 'Paul', audio: 'audio/voice_preview_paul%20-%20crisp%2C%20rich%20and%20educational%20(1).mp3' },
+    { value: 'ligia', label: 'Ligia', audio: 'audio/voice_preview_ligia%20elena%20-%20calm%2C%20polished%20and%20neutral.mp3' }
+  ]},
+  { country: '🇦🇷 Argentina', options: [
+    { value: 'malena', label: 'Malena', audio: 'audio/voice_preview_malena%20-%20warm%2C%20dynamic%20and%20confident%20(1).mp3' },
+    { value: 'agustin', label: 'Agustín', audio: 'audio/voice_preview_agust%C3%ADn%20-%20relaxed%2C%20warm%20and%20approachable.mp3' }
+  ]},
+  { country: '🇲🇽 Mexicana', options: [
+    { value: 'camila', label: 'Camila', audio: 'audio/voice_preview_camila%20-%20inviting%2C%20rich%20and%20warm.mp3' },
+    { value: 'enrique', label: 'Enrique', audio: 'audio/voice_preview_enrique%20gonz%C3%A1lez%20-%20lively%20and%20engaging.mp3' }
+  ]},
+  { country: '🇩🇴 Dominicana', options: [
+    { value: 'diana', label: 'Diana', audio: 'audio/voice_preview_diana%20-%20warm%2C%20clear%20and%20expressive%20(1).mp3' },
+    { value: 'tony', label: 'Tony', audio: 'audio/voice_preview_tony%20v%C3%A1squez%20-%20poetic%20and%20reflective%20(1).mp3' }
+  ]},
+];
+
+let currentAudio = null;
+
+const voiceDropdown = document.getElementById('voice-dropdown');
+
+VOICES.forEach(group => {
+  const header = document.createElement('div');
+  header.style.cssText = 'padding:8px 14px 4px;font-size:11px;font-weight:600;color:#7a9088;letter-spacing:0.5px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,0.04);margin-top:4px;';
+  header.textContent = group.country;
+  voiceDropdown.appendChild(header);
+
+  group.options.forEach(opt => {
+    const item = document.createElement('div');
+    item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:10px 14px 10px 20px;cursor:pointer;transition:background 0.15s;';
+
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = opt.label;
+    nameSpan.style.cssText = 'color:#f0f5f2;font-size:14px;flex:1;';
+    item.appendChild(nameSpan);
+
+    if (opt.audio) {
+      const playBtn = document.createElement('button');
+      playBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+      playBtn.style.cssText = 'background:rgba(0,200,150,0.12);border:1px solid rgba(0,200,150,0.25);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#00c896;flex-shrink:0;transition:all 0.2s;padding:0;';
+      playBtn.title = 'Escuchar preview';
+
+      playBtn.onclick = (e) => {
+        e.stopPropagation();
+        // Reproducir un preview también selecciona la voz — la mayoría de la
+        // gente toca Play pensando que con eso queda elegida y manda el form.
+        selectVoice(opt.value, opt.label + ' — ' + group.country);
+        if (currentAudio) {
+          const wasSame = currentAudio._voiceKey === opt.value;
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+          document.querySelectorAll('.play-btn-active').forEach(b => {
+            b.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+            b.classList.remove('play-btn-active');
+            b.style.background = 'rgba(0,200,150,0.12)';
+          });
+          if (wasSame) {
+            currentAudio = null;
+            return;
+          }
+        }
+        const audio = new Audio(opt.audio);
+        audio._voiceKey = opt.value;
+        currentAudio = audio;
+        playBtn.innerHTML = '<svg width="10" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+        playBtn.classList.add('play-btn-active');
+        playBtn.style.background = 'rgba(0,200,150,0.25)';
+        audio.play();
+        audio.onended = () => {
+          playBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+          playBtn.classList.remove('play-btn-active');
+          playBtn.style.background = 'rgba(0,200,150,0.12)';
+          currentAudio = null;
+        };
+      };
+      item.appendChild(playBtn);
+    }
+
+    item.onmouseenter = () => item.style.background = 'rgba(0,200,150,0.06)';
+    item.onmouseleave = () => item.style.background = 'transparent';
+    item.onclick = (e) => {
+      if (e.target.closest('button')) return;
+      selectVoice(opt.value, opt.label + ' — ' + group.country);
+    };
+    voiceDropdown.appendChild(item);
+  });
+});
+
+function selectVoice(value, label) {
+  document.getElementById('voice').value = value;
+  document.getElementById('voice-label').textContent = label;
+  document.getElementById('voice-label').style.color = '#f0f5f2';
+  toggleVoiceDropdown(false);
+}
+
+function toggleVoiceDropdown(force) {
+  const dd = document.getElementById('voice-dropdown');
+  const isOpen = dd.style.display === 'block';
+  const shouldOpen = force !== undefined ? force : !isOpen;
+  dd.style.display = shouldOpen ? 'block' : 'none';
+  document.getElementById('voice-selected').style.borderColor = shouldOpen ? 'rgba(0,200,150,0.4)' : '';
+}
+
+document.addEventListener('click', function(e) {
+  if (!document.getElementById('voice-picker').contains(e.target)) {
+    toggleVoiceDropdown(false);
+  }
+});
+</script>
+
+</body>
+</html>
