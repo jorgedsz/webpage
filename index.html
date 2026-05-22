@@ -1764,6 +1764,280 @@ a.reviews-rating-bar:hover {
     50% { opacity: 0.5; transform: scale(0.7); }
   }
 
+/* ===== CALL MOCKUP (replaces WhatsApp chat mockup in hero) ===== */
+.call-mockup {
+  width: 100%;
+  max-width: 380px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(20,211,191,0.12) 0%, transparent 60%),
+    linear-gradient(180deg, #18221f 0%, #0c1311 100%);
+  border-radius: 38px;
+  overflow: hidden;
+  box-shadow:
+    0 28px 56px -16px rgba(0,0,0,0.55),
+    0 8px 16px -8px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  border: 1px solid rgba(245,241,232,0.08);
+  transform: rotate(-1deg);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  padding: 20px 22px 24px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+.call-mockup:hover { transform: rotate(0deg) translateY(-4px); }
+
+/* iPhone-style notch */
+.call-mockup::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 108px;
+  height: 24px;
+  background: #000;
+  border-radius: 100px;
+  z-index: 2;
+}
+
+.call-mockup-floating-badge {
+  position: absolute;
+  top: 22px; right: -16px;
+  background: var(--teal);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 24px -8px rgba(6,182,164,0.45);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transform: rotate(3deg);
+}
+.call-mockup-floating-badge .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px #fff;
+  animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+.call-mockup-header {
+  text-align: center;
+  padding-top: 56px;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+}
+.call-mockup-eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245,241,232,0.45);
+  margin-bottom: 4px;
+}
+.call-mockup-status {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.call-mockup-status .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 10px var(--teal);
+  animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+.call-mockup-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 12px;
+}
+
+.call-mockup-avatar-wrap {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.call-mockup-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--teal);
+  opacity: 0;
+  animation: cmRing 2.4s ease-out infinite;
+}
+.call-mockup-ring.delay-1 { animation-delay: 0.8s; }
+.call-mockup-ring.delay-2 { animation-delay: 1.6s; }
+@keyframes cmRing {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+.call-mockup-avatar {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4a043 0%, #b8862b 60%, #8e6720 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  color: white;
+  border: 3px solid rgba(255,255,255,0.06);
+  box-shadow: 0 16px 32px -8px rgba(0,0,0,0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.call-mockup-name {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: rgba(245,241,232,0.96);
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+.call-mockup-subtitle {
+  font-size: 13px;
+  color: rgba(245,241,232,0.5);
+  text-align: center;
+}
+
+.call-mockup-timer {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: rgba(245,241,232,0.9);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  margin: 4px 0 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.call-mockup-timer::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+  animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+.call-mockup-viz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 52px;
+  margin: 4px 0;
+}
+.call-mockup-viz span {
+  width: 5px;
+  height: 12px;
+  background: linear-gradient(180deg, var(--teal-bright), var(--teal));
+  border-radius: 4px;
+  transform-origin: center;
+  animation: cmViz 1s ease-in-out infinite;
+}
+.call-mockup-viz span:nth-child(1)  { animation-delay: 0.00s; }
+.call-mockup-viz span:nth-child(2)  { animation-delay: 0.08s; }
+.call-mockup-viz span:nth-child(3)  { animation-delay: 0.16s; }
+.call-mockup-viz span:nth-child(4)  { animation-delay: 0.24s; }
+.call-mockup-viz span:nth-child(5)  { animation-delay: 0.32s; }
+.call-mockup-viz span:nth-child(6)  { animation-delay: 0.40s; }
+.call-mockup-viz span:nth-child(7)  { animation-delay: 0.32s; }
+.call-mockup-viz span:nth-child(8)  { animation-delay: 0.24s; }
+.call-mockup-viz span:nth-child(9)  { animation-delay: 0.16s; }
+.call-mockup-viz span:nth-child(10) { animation-delay: 0.08s; }
+.call-mockup-viz span:nth-child(11) { animation-delay: 0.00s; }
+.call-mockup-viz span:nth-child(12) { animation-delay: 0.08s; }
+@keyframes cmViz {
+  0%, 100% { height: 10px; opacity: 0.4; }
+  50%      { height: 44px; opacity: 1; }
+}
+
+.call-mockup-transcript {
+  background: rgba(20, 211, 191, 0.08);
+  border: 1px solid rgba(20, 211, 191, 0.20);
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  color: rgba(245,241,232,0.88);
+  font-style: italic;
+  margin-top: 6px;
+  max-width: 280px;
+  text-align: center;
+  line-height: 1.45;
+}
+.call-mockup-transcript strong {
+  font-style: normal;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.call-mockup-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  padding: 18px 0 4px;
+}
+.cm-btn {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: rgba(245,241,232,0.08);
+  border: 1px solid rgba(245,241,232,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(245,241,232,0.85);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cm-btn:hover { background: rgba(245,241,232,0.14); }
+.cm-btn svg { width: 22px; height: 22px; }
+.cm-btn.end {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: white;
+  width: 64px; height: 64px;
+  box-shadow: 0 8px 20px -6px rgba(239,68,68,0.55);
+}
+.cm-btn.end:hover { background: #dc2626; }
+.cm-btn.end svg { width: 26px; height: 26px; transform: rotate(135deg); }
+
+@media (max-width: 1024px) {
+  .call-mockup { max-width: 340px; min-height: 540px; }
+  .call-mockup-avatar-wrap { width: 110px; height: 110px; }
+  .call-mockup-avatar { width: 88px; height: 88px; font-size: 34px; }
+}
+@media (max-width: 480px) {
+  .call-mockup-floating-badge { right: -8px; font-size: 10px; padding: 6px 11px; }
+}
+
 /* ===== PAIN — soft bullet list ===== */
   .pain-soft {
     padding: 90px 32px;
@@ -3376,58 +3650,55 @@ body.call-widget-open .wa-fab { opacity: 0; pointer-events: none; transform: sca
       </div>
     </div>
 
-    <!-- RIGHT: WhatsApp mockup -->
+    <!-- RIGHT: Call mockup -->
     <div class="hero-right fade-up d-3">
-      <div class="wa-mockup">
-        <div class="wa-mockup-floating-badge">
+      <div class="call-mockup">
+        <div class="call-mockup-floating-badge">
           <span class="dot"></span>
-          En línea ahora
+          Llamada en vivo
         </div>
 
-        <div class="wa-mockup-header">
-          <span class="wa-mockup-back">‹</span>
-          <div class="wa-mockup-avatar">L</div>
-          <div class="wa-mockup-meta">
-            <div class="wa-mockup-name">Lina · Sword AI</div>
-            <div class="wa-mockup-status">en línea</div>
-          </div>
-          <div class="wa-mockup-icons">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+        <div class="call-mockup-header">
+          <div class="call-mockup-eyebrow">Sword AI</div>
+          <div class="call-mockup-status">
+            <span class="dot"></span>
+            Llamada en curso
           </div>
         </div>
 
-        <div class="wa-mockup-chat">
-          <div class="wa-mockup-date">HOY</div>
-
-          <div class="wa-bubble client">
-            Hola, vi el anuncio del apartamento en Laureles. ¿Sigue disponible?
-            <span class="wa-bubble-time">9:47 PM</span>
+        <div class="call-mockup-body">
+          <div class="call-mockup-avatar-wrap">
+            <div class="call-mockup-ring"></div>
+            <div class="call-mockup-ring delay-1"></div>
+            <div class="call-mockup-ring delay-2"></div>
+            <div class="call-mockup-avatar">L</div>
           </div>
 
-          <div class="wa-bubble agent">
-            ¡Hola! Sí, sigue disponible 😊 Te cuento: es de 78m², 2 alcobas, último piso con balcón. ¿Lo buscas para vivir o para inversión?
-            <span class="wa-bubble-time">9:47 PM <svg viewBox="0 0 16 12" fill="currentColor"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033L11.046 3.827a.366.366 0 0 0-.135-.51z"/></svg></span>
+          <div class="call-mockup-name">Lina · Sword AI</div>
+          <div class="call-mockup-subtitle">Atendiendo lead de inmobiliaria</div>
+
+          <div class="call-mockup-timer">02:47</div>
+
+          <div class="call-mockup-viz">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
           </div>
 
-          <div class="wa-bubble client">
-            Para vivir. ¿Cuánto está el arriendo?
-            <span class="wa-bubble-time">9:48 PM</span>
+          <div class="call-mockup-transcript">
+            <strong>Lina:</strong> "$2.800.000 mensual incluye administración. ¿Te agendo una visita el sábado a las 10am?"
           </div>
+        </div>
 
-          <div class="wa-bubble agent">
-            $2.800.000 mensual, incluye administración y parqueadero. ¿Quieres que agendemos una visita esta semana?
-            <span class="wa-bubble-time">9:48 PM <svg viewBox="0 0 16 12" fill="currentColor"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033L11.046 3.827a.366.366 0 0 0-.135-.51z"/></svg></span>
-          </div>
-
-          <div class="wa-bubble client">
-            ¿El sábado a las 10am está bien?
-            <span class="wa-bubble-time">9:48 PM</span>
-          </div>
-
-          <div class="wa-typing">
-            <span></span><span></span><span></span>
-          </div>
+        <div class="call-mockup-controls">
+          <button type="button" class="cm-btn" aria-label="Silenciar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </button>
+          <button type="button" class="cm-btn" aria-label="Altavoz">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+          <button type="button" class="cm-btn end" aria-label="Colgar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </button>
         </div>
       </div>
     </div>
