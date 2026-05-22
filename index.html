@@ -429,12 +429,18 @@ footer.site-footer {
   display: flex; align-items: center; justify-content: center;
   padding: 20px;
   opacity: 0;
+  /* Android Chrome ignores pointer-events:none on elements with backdrop-filter;
+     visibility:hidden removes us from hit-testing entirely. iPhone respects
+     pointer-events:none which is why it worked there but not on Android. */
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
 }
 .cal-modal-overlay.open {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+  transition: opacity 0.25s ease, visibility 0s linear 0s;
 }
 .cal-modal-content {
   background: var(--bg2);
@@ -2698,13 +2704,16 @@ body.call-widget-open .wa-fab { opacity: 0; pointer-events: none; transform: sca
   overflow: hidden;
   transform: translateY(20px) scale(0.96);
   opacity: 0;
+  visibility: hidden; /* Same defense as cal-modal — keeps Android Chrome from capturing taps on this fixed full-width element */
   pointer-events: none;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s, visibility 0s linear 0.28s;
 }
 .call-widget.open {
   transform: translateY(0) scale(1);
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s, visibility 0s linear 0s;
 }
 .call-widget-header {
   display: flex;
